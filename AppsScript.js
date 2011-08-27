@@ -7,5 +7,6 @@ function myFunction() {
   sheet.clear();
  
   var response = UrlFetchApp.fetch("gdd-2011-quiz-japan.appspot.com/apps_script/sample").getContentText();
-  sheet.appendRow([response]);
+  var object = Utilities.jsonParse(response);
+  sheet.appendRow(object);
 }

@@ -1,12 +1,9 @@
 package com.wordpress.zenjiro.webgame;
 
 import java.awt.AWTException;
-import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Robot;
-import java.awt.Toolkit;
 import java.awt.event.InputEvent;
-import java.util.Random;
 
 /**
  * Web Gameを解く
@@ -20,18 +17,35 @@ public class WebGame {
 	 */
 	public static void main(final String[] args) throws AWTException, InterruptedException {
 		Thread.sleep(2000);
-		final Robot robot = new Robot();
-		final Random random = new Random();
-		final long start = System.currentTimeMillis();
-		while (System.currentTimeMillis() - start < 60000) {
-			final Point point = getLocation2(random.nextInt(32), random.nextInt(8));
-			robot.mouseMove(point.x, point.y);
-			Thread.sleep(1);
-			robot.mousePress(InputEvent.BUTTON1_MASK);
-			Thread.sleep(1);
-			robot.mouseRelease(InputEvent.BUTTON1_MASK);
-			Thread.sleep(1);
+		for (int i = 0; i < 32; i++) {
+			for (int j = 0; j < 8; j++) {
+				for (int k = 0; k < 32; k++) {
+					for (int l = 0; l < 8; l++) {
+						final Point point1 = getLocation2(i, j);
+						click(point1.x, point1.y);
+						final Point point2 = getLocation2(k, l);
+						click(point2.x, point2.y);
+					}
+				}
+			}
 		}
+	}
+
+	/**
+	 * クリックします。
+	 * @param x x座標
+	 * @param y y座標
+	 * @throws AWTException AWT例外
+	 * @throws InterruptedException 割り込み例外
+	 */
+	public static void click(int x, int y) throws AWTException, InterruptedException {
+		final Robot robot = new Robot();
+		robot.mouseMove(x, y);
+		Thread.sleep(1);
+		robot.mousePress(InputEvent.BUTTON1_MASK);
+		Thread.sleep(1);
+		robot.mouseRelease(InputEvent.BUTTON1_MASK);
+		Thread.sleep(1);
 	}
 
 	/**

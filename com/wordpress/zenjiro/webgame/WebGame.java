@@ -4,6 +4,7 @@ import java.awt.AWTException;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
+import java.util.Random;
 
 /**
  * Web Gameを解く
@@ -17,18 +18,15 @@ public class WebGame {
 	 */
 	public static void main(final String[] args) throws AWTException, InterruptedException {
 		Thread.sleep(2000);
-		// 16枚を順番にクリックして色を取得してみる。
 		final Robot robot = new Robot();
-		for (int row = 0; row < 2; row++) {
-			for (int col = 0; col < 8; col++) {
-				final Point point = getLocation(row, col);
-				robot.mouseMove(point.x, point.y);
-				robot.mousePress(InputEvent.BUTTON1_MASK);
-				robot.mouseRelease(InputEvent.BUTTON1_MASK);
-				Thread.sleep(10);
-				System.out
-						.printf("[%d, %d]: %s\n", row, col, robot.getPixelColor(point.x, point.y));
-			}
+		long start = System.currentTimeMillis();
+		while (System.currentTimeMillis() - start < 60000) {
+			int row = new Random().nextInt(8);
+			int col = new Random().nextInt(8);
+			final Point point = getLocation(row, col);
+			robot.mouseMove(point.x, point.y);
+			robot.mousePress(InputEvent.BUTTON1_MASK);
+			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 		}
 	}
 

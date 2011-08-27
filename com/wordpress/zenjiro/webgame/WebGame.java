@@ -1,6 +1,7 @@
 package com.wordpress.zenjiro.webgame;
 
 import java.awt.AWTException;
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
@@ -17,14 +18,42 @@ public class WebGame {
 	 */
 	public static void main(final String[] args) throws AWTException, InterruptedException {
 		Thread.sleep(2000);
-		for (int i = 0; i < 32; i++) {
-			for (int j = 0; j < 8; j++) {
-				for (int k = 0; k < 32; k++) {
-					for (int l = 0; l < 8; l++) {
-						final Point point1 = getLocation2(i, j);
-						click(point1.x, point1.y);
-						final Point point2 = getLocation2(k, l);
-						click(point2.x, point2.y);
+		final int rows = 32;
+		final int cols = 8;
+		final boolean[][] isDone = new boolean[rows][cols];
+		final Color[][] colors = new Color[rows][cols];
+		final Robot robot = new Robot();
+		for (int row = 0; row < colors.length; row++) {
+			for (int column = 0; column < colors[row].length; column++) {
+				final Point point = getLocation2(row, column);
+				if (robot.getPixelColor(point.x, point.y).equals(new Color(221, 221, 221))) {
+					click(point, robot);
+					colors[row][column] = robot.getPixelColor(point.x, point.y);
+				} else {
+					isDone[row][column] = true;
+				}
+			}
+		}
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				if (!isDone[i][j]) {
+					inner: for (int k = 0; k < rows; k++) {
+						for (int l = 0; l < cols; l++) {
+							if (!isDone[k][l]) {
+								if (i * cols + j < k * cols + l) {
+									if (colors[i][j].equals(colors[k][l])) {
+										System.out.printf("[%d, %d] == [%d, %d]: %s\n", i, j, k, l,
+												colors[i][j]);
+										click(getLocation2(i, j), robot);
+										click(getLocation2(k, l), robot);
+										break inner;
+									} else {
+										System.out.printf("[%d, %d] (%s) != [%d, %d] (%s): \n", i,
+												j, colors[i][j], k, l, colors[k][l]);
+									}
+								}
+							}
+						}
 					}
 				}
 			}
@@ -33,19 +62,17 @@ public class WebGame {
 
 	/**
 	 * クリックします。
-	 * @param x x座標
-	 * @param y y座標
-	 * @throws AWTException AWT例外
+	 * @param point 点
+	 * @param robot ロボット
 	 * @throws InterruptedException 割り込み例外
 	 */
-	public static void click(int x, int y) throws AWTException, InterruptedException {
-		final Robot robot = new Robot();
-		robot.mouseMove(x, y);
-		Thread.sleep(1);
+	public static void click(final Point point, final Robot robot) throws InterruptedException {
+		robot.mouseMove(point.x, point.y);
+		Thread.sleep(10);
 		robot.mousePress(InputEvent.BUTTON1_MASK);
-		Thread.sleep(1);
+		Thread.sleep(10);
 		robot.mouseRelease(InputEvent.BUTTON1_MASK);
-		Thread.sleep(1);
+		Thread.sleep(30);
 	}
 
 	/**

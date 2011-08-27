@@ -24,6 +24,8 @@ public class WebGame {
 		robot.mousePress(InputEvent.BUTTON1_MASK);
 		Thread.sleep(100);
 		robot.mouseRelease(InputEvent.BUTTON1_MASK);
+		// 1枚目の色を取得してみる
+		System.out.println(robot.getPixelColor(point.x, point.y));
 	}
 
 	/**

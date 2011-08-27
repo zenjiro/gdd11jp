@@ -11,7 +11,7 @@ function myFunction() {
     sheet.clear();
     for (var j in city.data) {
       var record = city.data[j];
-      sheet.appendRow([record.capacity, record.usage]);
+      sheet.appendRow([record.capacity, record.usage, record.usage / record.capacity * 100 + "%"]);
     }
   }
 }

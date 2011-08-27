@@ -1,8 +1,10 @@
 package com.wordpress.zenjiro.webgame;
 
 import java.awt.AWTException;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Robot;
+import java.awt.Toolkit;
 import java.awt.event.InputEvent;
 import java.util.Random;
 
@@ -19,14 +21,16 @@ public class WebGame {
 	public static void main(final String[] args) throws AWTException, InterruptedException {
 		Thread.sleep(2000);
 		final Robot robot = new Robot();
-		long start = System.currentTimeMillis();
+		final Random random = new Random();
+		final long start = System.currentTimeMillis();
 		while (System.currentTimeMillis() - start < 60000) {
-			int row = new Random().nextInt(8);
-			int col = new Random().nextInt(8);
-			final Point point = getLocation(row, col);
+			final Point point = getLocation2(random.nextInt(32), random.nextInt(8));
 			robot.mouseMove(point.x, point.y);
+			Thread.sleep(1);
 			robot.mousePress(InputEvent.BUTTON1_MASK);
+			Thread.sleep(1);
 			robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			Thread.sleep(1);
 		}
 	}
 
@@ -37,5 +41,14 @@ public class WebGame {
 	 */
 	public static Point getLocation(final int row, final int col) {
 		return new Point(40 + col * 84, 80 + row * 82);
+	}
+
+	/**
+	 * @param row 行
+	 * @param col 列
+	 * @return カードの位置
+	 */
+	public static Point getLocation2(final int row, final int col) {
+		return new Point(15 + col * 25, (int) (30 + row * 24.6));
 	}
 }

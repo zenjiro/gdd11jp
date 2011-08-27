@@ -19,6 +19,6 @@ public class WebGame {
 	 * @return カードの位置
 	 */
 	public static Point getLocation(int row, int col) {
-		return null;
+		return new Point(40, 70);
 	}
 }

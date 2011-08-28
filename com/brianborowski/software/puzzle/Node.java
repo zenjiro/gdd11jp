@@ -1,4 +1,4 @@
-package com.wordpress.zenjiro.slidingpuzzle;
+package com.brianborowski.software.puzzle;
 
 /**
  * File: Node.java

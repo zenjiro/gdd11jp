@@ -6,13 +6,14 @@ package com.brianborowski.software.puzzle;
  * Date created: December 26, 2010
  * Date last modified: May 7, 2011
  */
+import java.util.BitSet;
 import java.util.HashMap;
 
 public final class AStar extends Algorithm {
 	private HashMap<Integer, AStarNode> openMap, closedMap;
 
 	@Override
-	void solvePuzzle(final long currentState, final int numOfThreads) {
+	void solvePuzzle(final long currentState, final int numOfThreads, final BitSet walls) {
 		initialMovesEstimate = NOT_APPLICABLE;
 		AStarNode currentConfig = new AStarNode(currentState);
 		this.openMap = new HashMap<Integer, AStarNode>();
@@ -38,7 +39,7 @@ public final class AStar extends Algorithm {
 			}
 			AStarNode successor;
 			successor = currentConfig.moveLeft();
-			if (successor != null) {
+			if (successor != null && !walls.get(successor.posOfSpace())) {
 				final int hashCode = successor.hashCode(), cost = successor.cost;
 				final AStarNode leftEl = this.closedMap.get(hashCode);
 				if (leftEl == null) {
@@ -53,7 +54,7 @@ public final class AStar extends Algorithm {
 				}
 			}
 			successor = currentConfig.moveRight();
-			if (successor != null) {
+			if (successor != null && !walls.get(successor.posOfSpace())) {
 				final int hashCode = successor.hashCode(), cost = successor.cost;
 				final AStarNode rightEl = this.closedMap.get(hashCode);
 				if (rightEl == null) {
@@ -68,7 +69,7 @@ public final class AStar extends Algorithm {
 				}
 			}
 			successor = currentConfig.moveUp();
-			if (successor != null) {
+			if (successor != null && !walls.get(successor.posOfSpace())) {
 				final int hashCode = successor.hashCode(), cost = successor.cost;
 				final AStarNode upEl = this.closedMap.get(hashCode);
 				if (upEl == null) {
@@ -83,7 +84,7 @@ public final class AStar extends Algorithm {
 				}
 			}
 			successor = currentConfig.moveDown();
-			if (successor != null) {
+			if (successor != null && !walls.get(successor.posOfSpace())) {
 				final int hashCode = successor.hashCode(), cost = successor.cost;
 				final AStarNode downEl = this.closedMap.get(hashCode);
 				if (downEl == null) {

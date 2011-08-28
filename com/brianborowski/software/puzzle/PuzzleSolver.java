@@ -1,5 +1,7 @@
 package com.brianborowski.software.puzzle;
 
+import java.util.BitSet;
+
 /**
  * File: PuzzleSolver.java
  * Author: Brian Borowski
@@ -22,7 +24,8 @@ public final class PuzzleSolver {
 				: PuzzleConfiguration.PUZZLE_8;
 		PuzzleConfiguration.setVerbose(true);
 		PuzzleConfiguration.initialize(puzzleType, algorithmType, heuristic, numOfThreads);
-		PuzzleConfiguration.getAlgorithm().solve(Utility.arrayToLong(initState), numOfThreads);
+		PuzzleConfiguration.getAlgorithm().solve(Utility.arrayToLong(initState), numOfThreads,
+				new BitSet());
 		Utility.displayStats(initState);
 	}
 

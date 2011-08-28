@@ -1,5 +1,7 @@
 package com.brianborowski.software.puzzle;
 
+import java.util.BitSet;
+
 /**
  * File: Algorithm.java
  * Author: Brian Borowski
@@ -30,12 +32,12 @@ public abstract class Algorithm {
 		return diff / 1000f;
 	}
 
-	abstract void solvePuzzle(final long currentState, final int numOfThreads);
+	abstract void solvePuzzle(final long currentState, final int numOfThreads, BitSet walls);
 
-	public void solve(final long currentState, final int numOfThreads) {
+	public void solve(final long currentState, final int numOfThreads, final BitSet walls) {
 		Node.initialize();
 		initialize();
-		solvePuzzle(currentState, numOfThreads);
+		solvePuzzle(currentState, numOfThreads, walls);
 		markEndTime();
 		running = false;
 	}

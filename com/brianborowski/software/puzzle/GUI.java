@@ -23,6 +23,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.BitSet;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -370,7 +371,7 @@ public class GUI extends JFrame implements Runnable {
 	@Override
 	public void run() {
 		PuzzleConfiguration.getAlgorithm().solve(Utility.arrayToLong(this.initState),
-				PuzzleConfiguration.getNumOfThreads());
+				PuzzleConfiguration.getNumOfThreads(), new BitSet());
 	}
 
 	private void cancelGraphicsThread() {

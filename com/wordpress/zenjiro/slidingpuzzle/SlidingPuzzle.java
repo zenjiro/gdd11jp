@@ -2,6 +2,7 @@ package com.wordpress.zenjiro.slidingpuzzle;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.BitSet;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,15 +46,16 @@ public class SlidingPuzzle {
 						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
 				PuzzleConfiguration.getAlgorithm().solve(
 						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 16)),
-						Utility.getDefaultNumOfThreads());
+						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
 				out.println(Algorithm.shortestPath);
 			} else if (w == 3 && h == 3) {
 				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
-						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
+						PuzzleConfiguration.ALGORITHM_ASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
 				PuzzleConfiguration.getAlgorithm().solve(
 						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 9)),
-						Utility.getDefaultNumOfThreads());
+						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
 				out.println(Algorithm.shortestPath);
+				System.out.println(Algorithm.shortestPath);
 			} else {
 				out.println();
 			}
@@ -82,6 +84,20 @@ public class SlidingPuzzle {
 				}
 			}
 			return builder.toString().replaceFirst(",$", "");
+		}
+
+		/**
+		 * @param hex 16進表記
+		 * @return 壁の位置
+		 */
+		public static BitSet getWalls(String hex) {
+			BitSet ret = new BitSet(hex.length());
+			for (int i = 0; i < hex.length(); i++) {
+				if (hex.charAt(i) == '=') {
+					ret.set(i);
+				}
+			}
+			return ret;
 		}
 	}
 }

@@ -6,6 +6,7 @@ package com.brianborowski.software.puzzle;
  * Date created: December 26, 2010
  * Date last modified: May 7, 2011
  */
+import java.util.BitSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -19,7 +20,7 @@ public class IDAStar extends Algorithm {
 	private DFSWorker[] workers;
 
 	@Override
-	void solvePuzzle(final long currentState, final int numOfThreads) {
+	void solvePuzzle(final long currentState, final int numOfThreads, final BitSet walls) {
 		if (numOfThreads > 1) {
 			solveMultiThreaded(currentState, numOfThreads);
 		} else {

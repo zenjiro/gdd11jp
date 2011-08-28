@@ -8,6 +8,7 @@ import com.brianborowski.software.puzzle.Utility;
 
 /**
  * スライドパズルを解く
+ * http://www.brian-borowski.com/Software/Puzzle/ を使います。
  */
 public class SlidingPuzzle {
 	/**

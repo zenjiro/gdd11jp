@@ -1,4 +1,5 @@
 package com.brianborowski.software.puzzle;
+
 /**
  * File: Centerable.java
  * Author: Brian Borowski
@@ -9,5 +10,5 @@ import java.awt.Container;
 import javax.swing.JFrame;
 
 public interface Centerable {
-    public void setCenter(Container me, JFrame parent);
+	public void setCenter(Container me, JFrame parent);
 }

@@ -1,7 +1,6 @@
 package com.wordpress.zenjiro.slidingpuzzle;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Scanner;
 
 /**

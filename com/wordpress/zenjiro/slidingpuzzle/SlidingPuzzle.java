@@ -55,7 +55,6 @@ public class SlidingPuzzle {
 						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 9)),
 						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
 				out.println(Algorithm.shortestPath);
-				System.out.println(Algorithm.shortestPath);
 			} else {
 				out.println();
 			}

@@ -22,17 +22,17 @@ public class IDAStar extends Algorithm {
 	@Override
 	void solvePuzzle(final long currentState, final int numOfThreads, final BitSet walls) {
 		if (numOfThreads > 1) {
-			solveMultiThreaded(currentState, numOfThreads);
+			solveMultiThreaded(currentState, numOfThreads, walls);
 		} else {
-			solveSingleThreaded(currentState);
+			solveSingleThreaded(currentState, walls);
 		}
 	}
 
-	private void solveMultiThreaded(final long currentState, final int numOfThreads) {
+	private void solveMultiThreaded(final long currentState, final int numOfThreads, BitSet walls) {
 		if (PuzzleConfiguration.isVerbose()) {
 			System.err.print("Creating starting positons for " + numOfThreads + " threads...");
 		}
-		findStartingPositions(currentState, numOfThreads);
+		findStartingPositions(currentState, numOfThreads, walls);
 		initialMovesEstimate = movesRequired = Node.h(currentState);
 		if (PuzzleConfiguration.isVerbose()) {
 			System.err.println("done");
@@ -71,7 +71,7 @@ public class IDAStar extends Algorithm {
 		}
 	}
 
-	private void solveSingleThreaded(final long currentState) {
+	private void solveSingleThreaded(final long currentState, final BitSet walls) {
 		initialMovesEstimate = movesRequired = Node.h(currentState);
 		this.workers = new DFSWorker[1];
 		final DFSWorker dfsWorker = new DFSWorker();
@@ -101,7 +101,7 @@ public class IDAStar extends Algorithm {
 	 * Performs a breadth-first search starting at currentState, finding
 	 * howMany unique states from which to start the threads.
 	 */
-	private void findStartingPositions(final long currentState, final int howMany) {
+	private void findStartingPositions(final long currentState, final int howMany, BitSet walls) {
 		BFSNode currentNode = new BFSNode(currentState, true);
 		currentNode.cost = 0;
 		if (currentNode.boardConfig == Node.goalState) {
@@ -118,7 +118,7 @@ public class IDAStar extends Algorithm {
 			final char fromDirection = currentNode.direction;
 			if (fromDirection != 'R') {
 				final BFSNode left = currentNode.moveLeftNode(null);
-				if (left != null) {
+				if (left != null && !walls.get(Node.posOfSpace(left.boardConfig))) {
 					++numberExpanded;
 					if (left.boardConfig == Node.goalState) {
 						completeBFS(left);
@@ -130,7 +130,7 @@ public class IDAStar extends Algorithm {
 			}
 			if (fromDirection != 'L') {
 				final BFSNode right = currentNode.moveRightNode(null);
-				if (right != null) {
+				if (right != null && !walls.get(Node.posOfSpace(right.boardConfig))) {
 					++numberExpanded;
 					if (right.boardConfig == Node.goalState) {
 						completeBFS(right);
@@ -142,7 +142,7 @@ public class IDAStar extends Algorithm {
 			}
 			if (fromDirection != 'D') {
 				final BFSNode up = currentNode.moveUpNode(null);
-				if (up != null) {
+				if (up != null && !walls.get(Node.posOfSpace(up.boardConfig))) {
 					++numberExpanded;
 					if (up.boardConfig == Node.goalState) {
 						completeBFS(up);
@@ -154,7 +154,7 @@ public class IDAStar extends Algorithm {
 			}
 			if (fromDirection != 'U') {
 				final BFSNode down = currentNode.moveDownNode(null);
-				if (down != null) {
+				if (down != null && !walls.get(Node.posOfSpace(down.boardConfig))) {
 					++numberExpanded;
 					if (down.boardConfig == Node.goalState) {
 						completeBFS(down);

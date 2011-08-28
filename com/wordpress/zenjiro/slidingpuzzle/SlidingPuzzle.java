@@ -22,7 +22,9 @@ public class SlidingPuzzle {
 	 */
 	public static void main(final String[] args) throws IOException {
 		final Scanner scanner = new Scanner(SlidingPuzzle.class.getResourceAsStream("problems.txt"));
-		final PrintWriter out = new PrintWriter("output.txt");
+		final PrintWriter out = new PrintWriter(SlidingPuzzle.class.getPackage().getName()
+				.replace(".", "/")
+				+ "/output.txt");
 		scanner.useDelimiter("[\\s,]");
 		final int lx = scanner.nextInt();
 		final int rx = scanner.nextInt();
@@ -38,14 +40,14 @@ public class SlidingPuzzle {
 			final String b = scanner.next();
 			Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 					"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
-			if (w == 4 && h == 4 && !b.contains("=")) {
+			if (w == 4 && h == 4) {
 				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_15,
 						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
 				PuzzleConfiguration.getAlgorithm().solve(
 						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 16)),
 						Utility.getDefaultNumOfThreads());
 				out.println(Algorithm.shortestPath);
-			} else if (w == 3 && h == 3 && !b.contains("=")) {
+			} else if (w == 3 && h == 3) {
 				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
 						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
 				PuzzleConfiguration.getAlgorithm().solve(

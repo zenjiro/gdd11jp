@@ -1,4 +1,4 @@
-package com.brianborowski.software.puzzle;
+package com.wordpress.zenjiro.slidingpuzzle;
 
 /**
  * File: AStar.java

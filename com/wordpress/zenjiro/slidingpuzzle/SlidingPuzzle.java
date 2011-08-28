@@ -45,6 +45,13 @@ public class SlidingPuzzle {
 						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 16)),
 						Utility.getDefaultNumOfThreads());
 				out.println(Algorithm.shortestPath);
+			} else if (w == 3 && h == 3 && !b.contains("=")) {
+				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
+						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
+				PuzzleConfiguration.getAlgorithm().solve(
+						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 9)),
+						Utility.getDefaultNumOfThreads());
+				out.println(Algorithm.shortestPath);
 			} else {
 				out.println();
 			}

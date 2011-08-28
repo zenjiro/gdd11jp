@@ -1,6 +1,6 @@
 function myFunction() {
   var spreadSheet = SpreadsheetApp.getActiveSpreadsheet();
-  var object = Utilities.jsonParse(UrlFetchApp.fetch("gdd-2011-quiz-japan.appspot.com/apps_script/sample").getContentText());
+  var object = Utilities.jsonParse(UrlFetchApp.fetch("http://gdd-2011-quiz-japan.appspot.com/apps_script/data?param=5135166023718746070").getContentText());
   for (var i in object) {
     var city = object[i];
     var city_name = city.city_name;

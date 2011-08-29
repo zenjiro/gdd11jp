@@ -50,7 +50,7 @@ public class SlidingPuzzle {
 				out.println();
 			} else if (w == 3 && h == 3) {
 				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
-						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
+						PuzzleConfiguration.ALGORITHM_ASTAR, PuzzleConfiguration.HEURISTIC_MD, 1);
 				PuzzleConfiguration.getAlgorithm().solve(
 						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 9)),
 						Utility.getDefaultNumOfThreads(), Util.getWalls(b));

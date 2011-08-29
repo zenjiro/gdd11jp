@@ -17,7 +17,6 @@ public class BluteForceSolver implements Solver {
 		String startB = b;
 		while (!b.equals(goal) && System.currentTimeMillis() - startTimeMillis < limitMillis) {
 			if (ret.length() > 1000) {
-				System.out.println("reset to start");
 				b = startB;
 				ret.delete(0, ret.length());
 			}
@@ -28,7 +27,6 @@ public class BluteForceSolver implements Solver {
 					b = b2;
 					ret.append('L');
 					if (b.equals(startB)) {
-						System.out.println("reset " + ret);
 						ret.delete(0, ret.length());
 					}
 				}
@@ -40,7 +38,6 @@ public class BluteForceSolver implements Solver {
 					b = b2;
 					ret.append('R');
 					if (b.equals(startB)) {
-						System.out.println("reset " + ret);
 						ret.delete(0, ret.length());
 					}
 				}
@@ -52,7 +49,6 @@ public class BluteForceSolver implements Solver {
 					b = b2;
 					ret.append('U');
 					if (b.equals(startB)) {
-						System.out.println("reset " + ret);
 						ret.delete(0, ret.length());
 					}
 				}
@@ -64,7 +60,6 @@ public class BluteForceSolver implements Solver {
 					b = b2;
 					ret.append('D');
 					if (b.equals(startB)) {
-						System.out.println("reset " + ret);
 						ret.delete(0, ret.length());
 					}
 				}

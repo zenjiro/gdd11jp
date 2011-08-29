@@ -79,6 +79,12 @@ public class Util {
 		case RIGHT:
 			return null;
 		case UP:
+			if (index / w > 0 && b.charAt(index - w) != '=') {
+				char[] chars = b.toCharArray();
+				chars[index] = chars[index - w];
+				chars[index - w] = '0';
+				return new String(chars);
+			}
 			return null;
 		case DOWN:
 			return null;

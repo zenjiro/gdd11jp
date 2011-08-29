@@ -77,6 +77,12 @@ public class Util {
 			}
 			return null;
 		case RIGHT:
+			if (index % w != w - 1 && b.charAt(index + 1) != '=') {
+				char[] chars = b.toCharArray();
+				chars[index] = chars[index + 1];
+				chars[index + 1] = '0';
+				return new String(chars);
+			}
 			return null;
 		case UP:
 			if (index / w > 0 && b.charAt(index - w) != '=') {

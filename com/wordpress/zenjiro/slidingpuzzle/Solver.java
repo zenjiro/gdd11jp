@@ -1,9 +1,9 @@
 package com.wordpress.zenjiro.slidingpuzzle;
 
 /**
- * 自作スライドパズルソルバ
+ * 自作スライドパズルソルバのインターフェイス
  */
-public class Solver {
+public interface Solver {
 	/**
 	 * スライドパズルを解きます。
 	 * @param w ボードの幅
@@ -12,7 +12,5 @@ public class Solver {
 	 * @param limitMillis 制限時間[ms]
 	 * @return 手順
 	 */
-	public String solve(final int w, final int h, final String b, final long limitMillis) {
-		return null;
-	}
+	public String solve(final int w, final int h, final String b, final long limitMillis);
 }

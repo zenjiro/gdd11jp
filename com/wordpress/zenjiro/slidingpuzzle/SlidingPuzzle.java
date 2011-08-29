@@ -48,12 +48,15 @@ public class SlidingPuzzle {
 						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
 				out.println(Algorithm.shortestPath);
 			} else if (w == 3 && h == 3) {
-				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
-						PuzzleConfiguration.ALGORITHM_ASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
-				PuzzleConfiguration.getAlgorithm().solve(
-						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 9)),
-						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
-				out.println(Algorithm.shortestPath);
+				// test
+				new BluteForceSolver().solve(w, h, b, 1000);
+				break;
+				//				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
+				//						PuzzleConfiguration.ALGORITHM_ASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
+				//				PuzzleConfiguration.getAlgorithm().solve(
+				//						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 9)),
+				//						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
+				//				out.println(Algorithm.shortestPath);
 			} else {
 				out.println();
 			}

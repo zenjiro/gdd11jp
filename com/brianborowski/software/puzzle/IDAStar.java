@@ -28,7 +28,8 @@ public class IDAStar extends Algorithm {
 		}
 	}
 
-	private void solveMultiThreaded(final long currentState, final int numOfThreads, BitSet walls) {
+	private void solveMultiThreaded(final long currentState, final int numOfThreads,
+			final BitSet walls) {
 		if (PuzzleConfiguration.isVerbose()) {
 			System.err.print("Creating starting positons for " + numOfThreads + " threads...");
 		}
@@ -101,7 +102,8 @@ public class IDAStar extends Algorithm {
 	 * Performs a breadth-first search starting at currentState, finding
 	 * howMany unique states from which to start the threads.
 	 */
-	private void findStartingPositions(final long currentState, final int howMany, BitSet walls) {
+	private void findStartingPositions(final long currentState, final int howMany,
+			final BitSet walls) {
 		BFSNode currentNode = new BFSNode(currentState, true);
 		currentNode.cost = 0;
 		if (currentNode.boardConfig == Node.goalState) {

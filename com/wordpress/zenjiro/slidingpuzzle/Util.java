@@ -52,7 +52,7 @@ public class Util {
 	}
 
 	/**
-	 * 移動します。
+	 * 移動します。移動できないときはnullを返します。
 	 * @param direction 向き
 	 * @param w ボードの幅
 	 * @param h ボードの高さ

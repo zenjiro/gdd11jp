@@ -93,6 +93,12 @@ public class Util {
 			}
 			return null;
 		case DOWN:
+			if (index / w < h - 1 && b.charAt(index + w) != '=') {
+				char[] chars = b.toCharArray();
+				chars[index] = chars[index + w];
+				chars[index + w] = '0';
+				return new String(chars);
+			}
 			return null;
 		default:
 			return null;

@@ -44,7 +44,7 @@ public class Util {
 	 * @param h ボードの高さ
 	 * @param b ボードの状態
 	 */
-	public void print(final int w, final int h, final int b) {
+	public static void print(final int w, final int h, final int b) {
 		// TODO 実装する。
 	}
 }

@@ -47,8 +47,12 @@ public class Util {
 	 * @param b ボードの状態
 	 */
 	public static void print(final int w, final int h, final String b) {
-		for (int i = 0; i < h; i++) {
-			System.out.println(b.substring(i * w, i * w + w));
+		if (b != null) {
+			for (int i = 0; i < h; i++) {
+				System.out.println(b.substring(i * w, i * w + w));
+			}
+		} else {
+			System.out.println(b);
 		}
 		System.out.println();
 	}
@@ -62,6 +66,24 @@ public class Util {
 	 * @return 移動後のボードの状態
 	 */
 	public static String move(final Direction direction, final int w, final int h, final String b) {
-		return null;
+		final int index = b.indexOf('0');
+		switch (direction) {
+		case LEFT:
+			if (index % w != 0 && b.charAt(index - 1) != '=') {
+				char[] chars = b.toCharArray();
+				chars[index] = chars[index - 1];
+				chars[index - 1] = '0';
+				return new String(chars);
+			}
+			return null;
+		case RIGHT:
+			return null;
+		case UP:
+			return null;
+		case DOWN:
+			return null;
+		default:
+			return null;
+		}
 	}
 }

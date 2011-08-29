@@ -49,16 +49,15 @@ public class SlidingPuzzle {
 				out.println(Algorithm.shortestPath);
 				//				out.println();
 			} else if (w == 3 && h == 3) {
-				out.println(new BluteForceSolver().solve(w, h, b, 1000));
 				//				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
-				//						PuzzleConfiguration.ALGORITHM_ASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
+				//						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
 				//				PuzzleConfiguration.getAlgorithm().solve(
 				//						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 9)),
 				//						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
 				//				out.println(Algorithm.shortestPath);
-				//				out.println();
-			} else if (w == 4 && h == 3 || w == 3 && h == 4 || w == 5 && h == 3 || w == 3 && h == 5) {
-				out.println(new BluteForceSolver().solve(w, h, b, 1000));
+				out.println();
+				//			} else if (w == 3 || h == 3) {
+				//				out.println(new BluteForceSolver().solve(w, h, b, 1000));
 			} else {
 				out.println();
 			}

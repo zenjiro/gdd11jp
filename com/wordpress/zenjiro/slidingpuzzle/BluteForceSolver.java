@@ -66,7 +66,6 @@ public class BluteForceSolver implements Solver {
 			}
 			}
 		}
-		System.out.println(ret.toString().substring(0, Math.min(30, ret.length())) + "...");
-		return ret.toString();
+		return b.equals(goal) ? ret.toString() : "";
 	}
 }

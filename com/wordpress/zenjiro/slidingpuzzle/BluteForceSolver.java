@@ -10,11 +10,11 @@ import com.wordpress.zenjiro.slidingpuzzle.Const.Direction;
 public class BluteForceSolver implements Solver {
 	@Override
 	public String solve(final int w, final int h, String b, final long limitMillis) {
+		long startTimeMillis = System.currentTimeMillis();
 		final StringBuilder ret = new StringBuilder();
 		final String goal = Util.getGoal(b);
 		final Random random = new Random();
-		while (!b.equals(goal)) {
-			System.out.println(b);
+		while (!b.equals(goal) && System.currentTimeMillis() - startTimeMillis < limitMillis) {
 			switch (random.nextInt(4)) {
 			case 0: {
 				final String b2 = Util.move(Direction.LEFT, w, h, b);
@@ -49,7 +49,7 @@ public class BluteForceSolver implements Solver {
 			}
 			}
 		}
-		System.out.println(b);
+		System.out.println(ret.toString().substring(0, 30) + "...");
 		return ret.toString();
 	}
 }

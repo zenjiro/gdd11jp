@@ -57,9 +57,7 @@ public class SlidingPuzzle {
 				//						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
 				//				out.println(Algorithm.shortestPath);
 				//				out.println();
-			} else if (w == 4 && h == 3) {
-				out.println(new BluteForceSolver().solve(w, h, b, 1000));
-			} else if (w == 3 && h == 4) {
+			} else if (w == 4 && h == 3 || w == 3 && h == 4 || w == 5 && h == 3 || w == 3 && h == 5) {
 				out.println(new BluteForceSolver().solve(w, h, b, 1000));
 			} else {
 				out.println();

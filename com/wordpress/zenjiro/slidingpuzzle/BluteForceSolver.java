@@ -17,6 +17,7 @@ public class BluteForceSolver implements Solver {
 		Util.print(w, h, b);
 		b = Util.move(Direction.DOWN, w, h, b);
 		Util.print(w, h, b);
+		Util.print(w, h, Util.getGoal(b));
 		return null;
 	}
 }

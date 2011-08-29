@@ -70,7 +70,7 @@ public class Util {
 		switch (direction) {
 		case LEFT:
 			if (index % w != 0 && b.charAt(index - 1) != '=') {
-				char[] chars = b.toCharArray();
+				final char[] chars = b.toCharArray();
 				chars[index] = chars[index - 1];
 				chars[index - 1] = '0';
 				return new String(chars);
@@ -78,7 +78,7 @@ public class Util {
 			return null;
 		case RIGHT:
 			if (index % w != w - 1 && b.charAt(index + 1) != '=') {
-				char[] chars = b.toCharArray();
+				final char[] chars = b.toCharArray();
 				chars[index] = chars[index + 1];
 				chars[index + 1] = '0';
 				return new String(chars);
@@ -86,7 +86,7 @@ public class Util {
 			return null;
 		case UP:
 			if (index / w > 0 && b.charAt(index - w) != '=') {
-				char[] chars = b.toCharArray();
+				final char[] chars = b.toCharArray();
 				chars[index] = chars[index - w];
 				chars[index - w] = '0';
 				return new String(chars);
@@ -94,7 +94,7 @@ public class Util {
 			return null;
 		case DOWN:
 			if (index / w < h - 1 && b.charAt(index + w) != '=') {
-				char[] chars = b.toCharArray();
+				final char[] chars = b.toCharArray();
 				chars[index] = chars[index + w];
 				chars[index + w] = '0';
 				return new String(chars);
@@ -103,5 +103,19 @@ public class Util {
 		default:
 			return null;
 		}
+	}
+
+	/**
+	 * @param b ボードの状態
+	 * @return ゴールの状態
+	 */
+	public static String getGoal(final String b) {
+		final String string = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		final char[] ret = new char[b.length()];
+		for (int i = 0; i < b.length() - 1; i++) {
+			ret[i] = b.charAt(i) == '=' ? '=' : string.charAt(i);
+		}
+		ret[ret.length - 1] = '0';
+		return new String(ret);
 	}
 }

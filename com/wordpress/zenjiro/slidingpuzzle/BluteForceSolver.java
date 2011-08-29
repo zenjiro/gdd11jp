@@ -14,6 +14,7 @@ public class BluteForceSolver implements Solver {
 		final StringBuilder ret = new StringBuilder();
 		final String goal = Util.getGoal(b);
 		final Random random = new Random();
+		String startB = b;
 		while (!b.equals(goal) && System.currentTimeMillis() - startTimeMillis < limitMillis) {
 			switch (random.nextInt(4)) {
 			case 0: {
@@ -21,6 +22,10 @@ public class BluteForceSolver implements Solver {
 				if (b2 != null) {
 					b = b2;
 					ret.append('L');
+					if (b.equals(startB)) {
+						System.out.println("reset " + ret);
+						ret.delete(0, ret.length());
+					}
 				}
 				break;
 			}
@@ -29,6 +34,10 @@ public class BluteForceSolver implements Solver {
 				if (b2 != null) {
 					b = b2;
 					ret.append('R');
+					if (b.equals(startB)) {
+						System.out.println("reset " + ret);
+						ret.delete(0, ret.length());
+					}
 				}
 				break;
 			}
@@ -37,6 +46,10 @@ public class BluteForceSolver implements Solver {
 				if (b2 != null) {
 					b = b2;
 					ret.append('U');
+					if (b.equals(startB)) {
+						System.out.println("reset " + ret);
+						ret.delete(0, ret.length());
+					}
 				}
 				break;
 			}
@@ -45,11 +58,15 @@ public class BluteForceSolver implements Solver {
 				if (b2 != null) {
 					b = b2;
 					ret.append('D');
+					if (b.equals(startB)) {
+						System.out.println("reset " + ret);
+						ret.delete(0, ret.length());
+					}
 				}
 			}
 			}
 		}
-		System.out.println(ret.toString().substring(0, 30) + "...");
+		System.out.println(ret.toString().substring(0, Math.min(30, ret.length())) + "...");
 		return ret.toString();
 	}
 }

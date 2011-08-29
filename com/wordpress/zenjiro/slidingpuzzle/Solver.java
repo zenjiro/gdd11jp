@@ -1,7 +1,7 @@
 package com.wordpress.zenjiro.slidingpuzzle;
 
 /**
- * 自作ソルバ
+ * 自作スライドパズルソルバ
  */
 public class Solver {
 	/**

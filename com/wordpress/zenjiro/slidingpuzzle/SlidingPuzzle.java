@@ -41,23 +41,22 @@ public class SlidingPuzzle {
 			Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 					"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
 			if (w == 4 && h == 4) {
-				//				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_15,
-				//						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_MD, 1);
-				//				PuzzleConfiguration.getAlgorithm().solve(
-				//						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 16)),
-				//						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
-				//				out.println(Algorithm.shortestPath);
-				out.println();
+				// FIXME ALGORITHM_IDASTARは結果が間違っている。
+				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_15,
+						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
+				PuzzleConfiguration.getAlgorithm().solve(
+						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 16)),
+						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
+				out.println(Algorithm.shortestPath);
 			} else if (w == 3 && h == 3) {
 				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
-						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_MD, 1);
+						PuzzleConfiguration.ALGORITHM_ASTAR, PuzzleConfiguration.HEURISTIC_MD, 1);
 				PuzzleConfiguration.getAlgorithm().solve(
 						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 9)),
 						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
 				out.println(Algorithm.shortestPath);
-				//				out.println();
-				//			} else if (w == 3 || h == 3) {
-				//				out.println(new BluteForceSolver().solve(w, h, b, 1000));
+			} else if ((w == 3 || h == 3) && w < 6 && h < 6) {
+				out.println(new BluteForceSolver().solve(w, h, b, 1000));
 			} else {
 				out.println();
 			}

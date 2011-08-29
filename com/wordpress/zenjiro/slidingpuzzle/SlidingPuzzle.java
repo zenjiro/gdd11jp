@@ -41,13 +41,13 @@ public class SlidingPuzzle {
 			Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 					"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
 			if (w == 4 && h == 4) {
-				//				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_15,
-				//						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
-				//				PuzzleConfiguration.getAlgorithm().solve(
-				//						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 16)),
-				//						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
-				//				out.println(Algorithm.shortestPath);
-				out.println();
+				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_15,
+						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
+				PuzzleConfiguration.getAlgorithm().solve(
+						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 16)),
+						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
+				out.println(Algorithm.shortestPath);
+				//				out.println();
 			} else if (w == 3 && h == 3) {
 				// test
 				out.println(new BluteForceSolver().solve(w, h, b, 2000));

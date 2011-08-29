@@ -2,6 +2,8 @@ package com.wordpress.zenjiro.slidingpuzzle;
 
 import java.util.BitSet;
 
+import com.wordpress.zenjiro.slidingpuzzle.Const.Direction;
+
 /**
  * ユーティリティクラス
  */
@@ -59,8 +61,7 @@ public class Util {
 	 * @param b ボードの状態
 	 * @return 移動後のボードの状態
 	 */
-	public static String move(final Const.Direction direction, final int w, final int h,
-			final String b) {
+	public static String move(final Direction direction, final int w, final int h, final String b) {
 		return null;
 	}
 }

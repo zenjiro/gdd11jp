@@ -56,7 +56,7 @@ public class SlidingPuzzle {
 						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
 				out.println(Algorithm.shortestPath);
 			} else if ((w == 3 || h == 3) && w < 6 && h < 6) {
-				out.println(new BluteForceSolver().solve(w, h, b, 1000));
+				out.println(new BluteForceSolver().solve(w, h, b, 10000));
 			} else {
 				out.println();
 			}

@@ -12,5 +12,5 @@ public interface Solver {
 	 * @param limitMillis 制限時間[ms]
 	 * @return 手順
 	 */
-	public String solve(final int w, final int h, final String b, final long limitMillis);
+	public String solve(int w, int h, String b, long limitMillis);
 }

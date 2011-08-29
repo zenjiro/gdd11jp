@@ -11,13 +11,13 @@ public class Util {
 	 * @param hex 16進表記
 	 * @return 10進表記
 	 */
-	public static String hexToDecimal(String hex) {
-		StringBuilder builder = new StringBuilder();
+	public static String hexToDecimal(final String hex) {
+		final StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < hex.length(); i++) {
 			try {
-				int value = Integer.parseInt(hex.substring(i, i + 1), 16);
+				final int value = Integer.parseInt(hex.substring(i, i + 1), 16);
 				builder.append(value + ",");
-			} catch (NumberFormatException e) {
+			} catch (final NumberFormatException e) {
 				builder.append((i + 1) + ",");
 			}
 		}
@@ -28,13 +28,23 @@ public class Util {
 	 * @param hex 16進表記
 	 * @return 壁の位置
 	 */
-	public static BitSet getWalls(String hex) {
-		BitSet ret = new BitSet(hex.length());
+	public static BitSet getWalls(final String hex) {
+		final BitSet ret = new BitSet(hex.length());
 		for (int i = 0; i < hex.length(); i++) {
 			if (hex.charAt(i) == '=') {
 				ret.set(i);
 			}
 		}
 		return ret;
+	}
+
+	/**
+	 * ボードの状態を表示します。
+	 * @param w ボードの幅
+	 * @param h ボードの高さ
+	 * @param b ボードの状態
+	 */
+	public void print(final int w, final int h, final int b) {
+		// TODO 実装する。
 	}
 }

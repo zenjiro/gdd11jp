@@ -45,6 +45,9 @@ public class Util {
 	 * @param b ボードの状態
 	 */
 	public static void print(final int w, final int h, final String b) {
-		// TODO 実装する。
+		for (int i = 0; i < h; i++) {
+			System.out.println(b.substring(i * w, i * w + w));
+		}
+		System.out.println();
 	}
 }

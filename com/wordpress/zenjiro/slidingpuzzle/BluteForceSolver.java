@@ -16,6 +16,11 @@ public class BluteForceSolver implements Solver {
 		final Random random = new Random();
 		String startB = b;
 		while (!b.equals(goal) && System.currentTimeMillis() - startTimeMillis < limitMillis) {
+			if (ret.length() > 1000) {
+				System.out.println("reset to start");
+				b = startB;
+				ret.delete(0, ret.length());
+			}
 			switch (random.nextInt(4)) {
 			case 0: {
 				final String b2 = Util.move(Direction.LEFT, w, h, b);

@@ -12,7 +12,7 @@ public class Solver {
 	 * @param limitMillis 制限時間[ms]
 	 * @return 手順
 	 */
-	public String solve(final int w, final int h, final String b, final int limitMillis) {
+	public String solve(final int w, final int h, final String b, final long limitMillis) {
 		return null;
 	}
 }

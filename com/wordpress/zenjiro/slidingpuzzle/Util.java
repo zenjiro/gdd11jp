@@ -50,4 +50,17 @@ public class Util {
 		}
 		System.out.println();
 	}
+
+	/**
+	 * 移動します。
+	 * @param direction 向き
+	 * @param w ボードの幅
+	 * @param h ボードの高さ
+	 * @param b ボードの状態
+	 * @return 移動後のボードの状態
+	 */
+	public static String move(final Const.Direction direction, final int w, final int h,
+			final String b) {
+		return null;
+	}
 }

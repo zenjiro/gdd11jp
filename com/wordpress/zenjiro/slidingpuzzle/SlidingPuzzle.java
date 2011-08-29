@@ -6,6 +6,10 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.brianborowski.software.puzzle.Algorithm;
+import com.brianborowski.software.puzzle.PuzzleConfiguration;
+import com.brianborowski.software.puzzle.Utility;
+
 /**
  * スライドパズルを解く
  * http://www.brian-borowski.com/Software/Puzzle/ を使います。
@@ -37,23 +41,25 @@ public class SlidingPuzzle {
 			Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 					"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
 			if (w == 4 && h == 4) {
-				//				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_15,
-				//						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
-				//				PuzzleConfiguration.getAlgorithm().solve(
-				//						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 16)),
-				//						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
-				//				out.println(Algorithm.shortestPath);
-				out.println();
+				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_15,
+						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
+				PuzzleConfiguration.getAlgorithm().solve(
+						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 16)),
+						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
+				out.println(Algorithm.shortestPath);
+				//				out.println();
 			} else if (w == 3 && h == 3) {
-				//				out.println(new BluteForceSolver().solve(w, h, b, 2000));
+				out.println(new BluteForceSolver().solve(w, h, b, 1000));
 				//				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
 				//						PuzzleConfiguration.ALGORITHM_ASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
 				//				PuzzleConfiguration.getAlgorithm().solve(
 				//						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 9)),
 				//						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
 				//				out.println(Algorithm.shortestPath);
-				out.println();
+				//				out.println();
 			} else if (w == 4 && h == 3) {
+				out.println(new BluteForceSolver().solve(w, h, b, 1000));
+			} else if (w == 3 && h == 4) {
 				out.println(new BluteForceSolver().solve(w, h, b, 1000));
 			} else {
 				out.println();

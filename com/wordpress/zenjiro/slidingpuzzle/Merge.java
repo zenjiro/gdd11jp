@@ -26,7 +26,8 @@ public class Merge {
 				if (results[j] == null) {
 					results[j] = line;
 				} else {
-					if (line.length() > 0 && line.length() < results[j].length()) {
+					if (results[j].isEmpty() || line.length() > 0
+							&& line.length() < results[j].length()) {
 						results[j] = line;
 					}
 				}

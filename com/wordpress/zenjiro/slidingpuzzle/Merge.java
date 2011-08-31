@@ -18,7 +18,7 @@ public class Merge {
 				.replace(".", "/")
 				+ "/output.txt");
 		final String[] results = new String[5000];
-		for (int i = 1; i < 11; i++) {
+		for (int i = 1; i < 3; i++) {
 			final Scanner scanner = new Scanner(
 					Merge.class.getResourceAsStream(Integer.toString(i)));
 			for (int j = 0; j < 5000; j++) {

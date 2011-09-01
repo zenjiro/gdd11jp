@@ -50,7 +50,7 @@ public class SlidingPuzzle {
 				//						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 16)),
 				//						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
 				//				out.println(Algorithm.shortestPath);
-				final String result = new BluteForceSolver().solve(w, h, b, 10000);
+				final String result = new BluteForceSolver().solve(w, h, b, 30000);
 				out.println(result);
 				if (result.length() > 0) {
 					ok++;
@@ -63,8 +63,8 @@ public class SlidingPuzzle {
 						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
 				out.println(Algorithm.shortestPath);
 				ok++;
-			} else if (w < 6 && h < 6) {
-				final String result = new BluteForceSolver().solve(w, h, b, 10000);
+			} else if (w < 7 && h < 7) {
+				final String result = new BluteForceSolver().solve(w, h, b, 30000);
 				out.println(result);
 				if (result.length() > 0) {
 					ok++;

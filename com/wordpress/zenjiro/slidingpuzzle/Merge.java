@@ -18,7 +18,7 @@ public class Merge {
 				.replace(".", "/")
 				+ "/output2.txt");
 		final String[] results = new String[5000];
-		for (String file : new String[]{"4.11", "Copy of output.txt"}) {
+		for (String file : new String[]{"4.11", "output.txt"}) {
 			final Scanner scanner = new Scanner(
 					Merge.class.getResourceAsStream(file));
 			for (int j = 0; j < 5000; j++) {

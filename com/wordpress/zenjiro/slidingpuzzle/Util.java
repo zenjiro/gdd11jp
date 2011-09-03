@@ -146,12 +146,12 @@ public class Util {
 				b = move(Direction.DOWN, w, h, b);
 				break;
 			default:
-				Logger.getLogger(Check.class.getName()).log(Level.WARNING, "不正な文字{0}が含まれています：{1}",
+				Logger.getLogger(Util.class.getName()).log(Level.WARNING, "不正な文字{0}が含まれています：{1}",
 						new Object[] { path.charAt(j), path });
 				return false;
 			}
 			if (b == null) {
-				Logger.getLogger(Check.class.getName()).log(Level.WARNING, "不可能な動き{0}が指定されました：{1}",
+				Logger.getLogger(Util.class.getName()).log(Level.WARNING, "不可能な動き{0}が指定されました：{1}",
 						new Object[] { path.substring(0, j), b });
 				return false;
 			}

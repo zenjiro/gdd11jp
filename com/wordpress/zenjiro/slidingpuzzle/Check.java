@@ -1,5 +1,8 @@
 package com.wordpress.zenjiro.slidingpuzzle;
 
+import java.util.ArrayList;
+import java.util.Formatter;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +39,12 @@ public class Check {
 			this.h = h;
 			this.b = b;
 		}
+
+		@Override
+		public String toString() {
+			return new Formatter().format("w = %d, h = %d, b = %s", this.w, this.h, this.b)
+					.toString();
+		}
 	}
 
 	/**
@@ -43,6 +52,7 @@ public class Check {
 	 * @param args コマンドラン引数
 	 */
 	public static void main(final String[] args) {
+		final List<Board> problems = new ArrayList<Board>();
 		{
 			final Scanner scanner = new Scanner(Check.class.getResourceAsStream("problems.txt"));
 			scanner.useDelimiter("[\\s,]");
@@ -60,6 +70,7 @@ public class Check {
 				final String b = scanner.next();
 				Logger.getLogger(Check.class.getName()).log(Level.INFO,
 						"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
+				problems.add(new Board(w, h, b));
 			}
 			scanner.close();
 		}

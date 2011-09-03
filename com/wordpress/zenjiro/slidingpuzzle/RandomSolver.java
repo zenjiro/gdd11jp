@@ -5,9 +5,9 @@ import java.util.Random;
 import com.wordpress.zenjiro.slidingpuzzle.Const.Direction;
 
 /**
- * 総当りのソルバ
+ * ランダム探索するソルバ
  */
-public class BluteForceSolver implements Solver {
+public class RandomSolver implements Solver {
 	@Override
 	public String solve(final int w, final int h, String b, final long limitMillis) {
 		long startTimeMillis = System.currentTimeMillis();

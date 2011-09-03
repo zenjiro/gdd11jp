@@ -61,8 +61,16 @@ public class SlidingPuzzle {
 			//			} else 
 			if (w == 3 && h == 3) {
 				final String result = new RandomSolver().solve(w, h, b, 1000);
-				out.println(result);
 				if (result.length() > 0) {
+					if (Util.isOk(result, w, h, b)) {
+						out.println(result);
+						ok++;
+					} else {
+						Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.WARNING,
+								"結果が間違っていました：{0}", result);
+						out.println();
+						failed++;
+					}
 					ok++;
 				}
 			} else {

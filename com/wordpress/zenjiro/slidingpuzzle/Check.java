@@ -54,7 +54,7 @@ public class Check {
 	 * @param args コマンドラン引数
 	 */
 	public static void main(final String[] args) {
-		final String inputFile = "4.11";
+		final String inputFile = "4.77";
 		final List<Board> problems = new ArrayList<Board>();
 		{
 			final Scanner scanner = new Scanner(Check.class.getResourceAsStream("problems.txt"));

@@ -43,14 +43,7 @@ public class SlidingPuzzle {
 			final String b = scanner.next();
 			Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 					"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
-			if (w == 4 && h == 4) {
-				//				final String result = new RandomSolver().solve(w, h, b, 30000);
-				//				out.println(result);
-				//				if (result.length() > 0) {
-				//					ok++;
-				//				}
-				out.println();
-			} else if (w == 3 && h == 3) {
+			if (w == 3 && h == 3) {
 				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
 						PuzzleConfiguration.ALGORITHM_ASTAR, PuzzleConfiguration.HEURISTIC_MD, 1);
 				PuzzleConfiguration.getAlgorithm().solve(

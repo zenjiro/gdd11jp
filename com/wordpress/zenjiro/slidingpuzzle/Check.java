@@ -68,9 +68,9 @@ public class Check {
 				final int w = scanner.nextInt();
 				final int h = scanner.nextInt();
 				final String b = scanner.next();
-				Logger.getLogger(Check.class.getName()).log(Level.INFO,
-						"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
-				problems.add(new Board(w, h, b));
+				final Board board = new Board(w, h, b);
+				Logger.getLogger(Check.class.getName()).log(Level.INFO, "board = {0}", board);
+				problems.add(board);
 			}
 			scanner.close();
 		}

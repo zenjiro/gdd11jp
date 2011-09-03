@@ -71,7 +71,8 @@ public class SlidingPuzzle {
 						out.println();
 						failed++;
 					}
-					ok++;
+				} else {
+					out.println();
 				}
 			} else {
 				out.println();

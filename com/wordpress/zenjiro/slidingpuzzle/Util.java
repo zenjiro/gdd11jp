@@ -173,7 +173,7 @@ public class Util {
 				final int index = i * w + j;
 				final String string = b.substring(index, index + 1);
 				if (!string.equals("=")) {
-					final int number = Integer.parseInt(string, 16);
+					final int number = (Integer.parseInt(string, 16) + w * h - 1) % (w * h);
 					final int row = number / w;
 					final int col = number % w;
 					ret += Math.abs(row - i) + Math.abs(col - j);

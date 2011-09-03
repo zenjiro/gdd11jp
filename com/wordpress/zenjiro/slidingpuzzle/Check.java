@@ -33,12 +33,10 @@ public class Check {
 			}
 			scanner.close();
 		}
-		final String[] results = new String[5000];
 		{
 			final Scanner scanner = new Scanner(Check.class.getResourceAsStream("output.txt"));
 			for (int i = 0; i < 5000; i++) {
 				final String line = scanner.nextLine();
-				results[i] = line;
 				Logger.getLogger(Check.class.getName()).log(Level.INFO, "result = {0}", line);
 			}
 			scanner.close();

@@ -9,6 +9,36 @@ import java.util.logging.Logger;
  */
 public class Check {
 	/**
+	 * ボード
+	 */
+	static class Board {
+		/**
+		 * ボードの幅
+		 */
+		final int w;
+		/**
+		 * ボードの高さ
+		 */
+		final int h;
+		/**
+		 * ボードの状態
+		 */
+		final String b;
+
+		/**
+		 * ボードを初期化します。
+		 * @param w ボードの幅
+		 * @param h ボードの高さ
+		 * @param b ボードの状態
+		 */
+		public Board(final int w, final int h, final String b) {
+			this.w = w;
+			this.h = h;
+			this.b = b;
+		}
+	}
+
+	/**
 	 * メインメソッド
 	 * @param args コマンドラン引数
 	 */

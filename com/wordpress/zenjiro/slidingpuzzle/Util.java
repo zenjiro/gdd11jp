@@ -123,16 +123,16 @@ public class Util {
 
 	/**
 	 * 検算します。
-	 * @param result 結果
+	 * @param path 結果
 	 * @param w ボードの幅
 	 * @param h ボードの高さ
 	 * @param b ボードの状態
 	 * @return 正解したかどうか
 	 */
-	public static boolean isOk(final String result, final int w, final int h, String b) {
+	public static boolean isOk(final String path, final int w, final int h, String b) {
 		final String goal = getGoal(b);
-		for (int j = 0; j < result.length(); j++) {
-			switch (result.charAt(j)) {
+		for (int j = 0; j < path.length(); j++) {
+			switch (path.charAt(j)) {
 			case 'L':
 				b = move(Direction.LEFT, w, h, b);
 				break;
@@ -147,12 +147,12 @@ public class Util {
 				break;
 			default:
 				Logger.getLogger(Check.class.getName()).log(Level.WARNING, "不正な文字{0}が含まれています：{1}",
-						new Object[] { result.charAt(j), result });
+						new Object[] { path.charAt(j), path });
 				return false;
 			}
 			if (b == null) {
 				Logger.getLogger(Check.class.getName()).log(Level.WARNING, "不可能な動き{0}が指定されました：{1}",
-						new Object[] { result.substring(0, j), b });
+						new Object[] { path.substring(0, j), b });
 				return false;
 			}
 		}

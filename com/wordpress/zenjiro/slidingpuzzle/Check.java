@@ -89,14 +89,14 @@ public class Check {
 			int skipped = 0;
 			final Scanner scanner = new Scanner(Check.class.getResourceAsStream(inputFile));
 			while (scanner.hasNextLine()) {
-				final String result = scanner.nextLine();
-				Logger.getLogger(Check.class.getName()).log(Level.INFO, "result = {0}", result);
-				if (result.isEmpty()) {
-					out.println(result);
+				final String path = scanner.nextLine();
+				Logger.getLogger(Check.class.getName()).log(Level.INFO, "path = {0}", path);
+				if (path.isEmpty()) {
+					out.println(path);
 					skipped++;
 				} else {
-					if (Util.isOk(result, problems.get(i).w, problems.get(i).h, problems.get(i).b)) {
-						out.println(result);
+					if (Util.isOk(path, problems.get(i).w, problems.get(i).h, problems.get(i).b)) {
+						out.println(path);
 						ok++;
 					} else {
 						out.println();

@@ -14,14 +14,6 @@ public class BruteForceSolver implements Solver {
 	 */
 	static class Node implements Comparable<Node> {
 		/**
-		 * ボードの幅
-		 */
-		final int w;
-		/**
-		 * ボードの高さ
-		 */
-		final int h;
-		/**
 		 * ボードの状態
 		 */
 		final String b;
@@ -36,15 +28,11 @@ public class BruteForceSolver implements Solver {
 
 		/**
 		 * ノードを初期化します。
-		 * @param w ボードの幅
-		 * @param h ボードの高さ
 		 * @param b ボードの状態
 		 * @param path ここまでの手順
 		 * @param heuristic ヒューリスティック距離
 		 */
-		public Node(final int w, final int h, final String b, final String path, final int heuristic) {
-			this.w = w;
-			this.h = h;
+		public Node(final String b, final String path, final int heuristic) {
 			this.b = b;
 			this.path = path;
 			this.heuristic = heuristic;
@@ -79,29 +67,29 @@ public class BruteForceSolver implements Solver {
 		final long startTimeMillis = System.currentTimeMillis();
 		final String goal = Util.getGoal(b);
 		final String startB = b;
-		Node currentNode = new Node(w, h, b, "", Util.getHeuristicDistance(w, h, b));
+		Node currentNode = new Node(b, "", Util.getHeuristicDistance(w, h, b));
 		final Queue<Node> queue = new PriorityQueue<Node>();
 		while (!currentNode.b.equals(goal)
 				&& System.currentTimeMillis() - startTimeMillis < limitMillis) {
+			System.out.println("current = " + currentNode);
 			final String left = Util.move(Direction.LEFT, w, h, currentNode.b);
 			if (left != null && !left.equals(startB)) {
-				queue.add(new Node(w, h, left, currentNode.path + "L", Util.getHeuristicDistance(w,
-						h, left)));
+				queue.add(new Node(left, currentNode.path + "L", Util.getHeuristicDistance(w, h,
+						left)));
 			}
 			final String right = Util.move(Direction.RIGHT, w, h, currentNode.b);
 			if (right != null && !right.equals(startB)) {
-				queue.add(new Node(w, h, right, currentNode.path + "R", Util.getHeuristicDistance(
-						w, h, right)));
+				queue.add(new Node(right, currentNode.path + "R", Util.getHeuristicDistance(w, h,
+						right)));
 			}
 			final String up = Util.move(Direction.UP, w, h, currentNode.b);
 			if (up != null && !up.equals(startB)) {
-				queue.add(new Node(w, h, up, currentNode.path + "U", Util.getHeuristicDistance(w,
-						h, up)));
+				queue.add(new Node(up, currentNode.path + "U", Util.getHeuristicDistance(w, h, up)));
 			}
 			final String down = Util.move(Direction.DOWN, w, h, currentNode.b);
 			if (down != null && !down.equals(startB)) {
-				queue.add(new Node(w, h, down, currentNode.path + "D", Util.getHeuristicDistance(w,
-						h, down)));
+				queue.add(new Node(down, currentNode.path + "D", Util.getHeuristicDistance(w, h,
+						down)));
 			}
 			currentNode = queue.remove();
 		}

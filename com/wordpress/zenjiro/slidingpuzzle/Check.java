@@ -76,7 +76,7 @@ public class Check {
 		}
 		{
 			final Scanner scanner = new Scanner(Check.class.getResourceAsStream("output.txt"));
-			for (int i = 0; i < 5000; i++) {
+			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				Logger.getLogger(Check.class.getName()).log(Level.INFO, "result = {0}", line);
 			}

@@ -1,6 +1,6 @@
 package com.wordpress.zenjiro.slidingpuzzle;
 
-import java.util.ArrayDeque;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 import com.wordpress.zenjiro.slidingpuzzle.Const.Direction;
@@ -80,7 +80,7 @@ public class BruteForceSolver implements Solver {
 		final String goal = Util.getGoal(b);
 		final String startB = b;
 		Node currentNode = new Node(w, h, b, "", Util.getHeuristicDistance(w, h, b));
-		final Queue<Node> queue = new ArrayDeque<Node>();
+		final Queue<Node> queue = new PriorityQueue<Node>();
 		while (!currentNode.b.equals(goal)
 				&& System.currentTimeMillis() - startTimeMillis < limitMillis) {
 			System.out.println("current = " + currentNode);

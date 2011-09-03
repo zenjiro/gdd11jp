@@ -158,4 +158,25 @@ public class Util {
 		}
 		return b.equals(goal);
 	}
+
+	/**
+	 * マンハッタン距離でゴールまでのヒューリスティック距離を求めます。
+	 * @param w ボードの幅
+	 * @param h ボードの高さ
+	 * @param b ボードの状態
+	 * @return ヒューリスティック距離
+	 */
+	public static int getHeuristicDistance(final int w, final int h, final String b) {
+		int ret = 0;
+		for (int i = 0; i < h; i++) {
+			for (int j = 0; j < w; j++) {
+				int index = i * w + j;
+				int number = Integer.parseInt(b.substring(index, index + 1), 16);
+				int row = number / w;
+				int col = number % w;
+				ret += Math.abs(row - i) + Math.abs(col - j);
+			}
+		}
+		return ret;
+	}
 }

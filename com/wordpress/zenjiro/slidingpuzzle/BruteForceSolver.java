@@ -40,7 +40,7 @@ public class BruteForceSolver implements Solver {
 
 		@Override
 		public String toString() {
-			return this.b + ", " + this.path + ", " + this.heuristic;
+			return this.b + ", " + this.path + ", " + (this.heuristic + this.path.length());
 		}
 
 		@Override
@@ -71,7 +71,6 @@ public class BruteForceSolver implements Solver {
 		final Queue<Node> queue = new PriorityQueue<Node>();
 		while (!currentNode.b.equals(goal)
 				&& System.currentTimeMillis() - startTimeMillis < limitMillis) {
-			System.out.println("current = " + currentNode);
 			final String left = Util.move(Direction.LEFT, w, h, currentNode.b);
 			if (left != null && !left.equals(startB)) {
 				queue.add(new Node(left, currentNode.path + "L", Util.getHeuristicDistance(w, h,
@@ -93,7 +92,6 @@ public class BruteForceSolver implements Solver {
 			}
 			currentNode = queue.remove();
 		}
-		System.out.println("current = " + currentNode);
 		return currentNode.b.equals(goal) ? currentNode.path : "";
 	}
 }

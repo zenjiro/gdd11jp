@@ -43,11 +43,11 @@ public class SlidingPuzzle {
 			Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 					"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
 			if (w == 4 && h == 4) {
-//				final String result = new RandomSolver().solve(w, h, b, 30000);
-//				out.println(result);
-//				if (result.length() > 0) {
-//					ok++;
-//				}
+				//				final String result = new RandomSolver().solve(w, h, b, 30000);
+				//				out.println(result);
+				//				if (result.length() > 0) {
+				//					ok++;
+				//				}
 				out.println();
 			} else if (w == 3 && h == 3) {
 				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
@@ -55,14 +55,20 @@ public class SlidingPuzzle {
 				PuzzleConfiguration.getAlgorithm().solve(
 						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 9)),
 						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
-				out.println(Algorithm.shortestPath);
-				ok++;
-//			} else if (w < 7 && h < 7) {
-//				final String result = new RandomSolver().solve(w, h, b, 30000);
-//				out.println(result);
-//				if (result.length() > 0) {
-//					ok++;
-//				}
+				if (Util.isOk(Algorithm.shortestPath, w, h, b)) {
+					out.println(Algorithm.shortestPath);
+					ok++;
+				} else {
+					Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.WARNING,
+							"結果が間違っていました：{0}", Algorithm.shortestPath);
+					out.println();
+				}
+				//			} else if (w < 7 && h < 7) {
+				//				final String result = new RandomSolver().solve(w, h, b, 30000);
+				//				out.println(result);
+				//				if (result.length() > 0) {
+				//					ok++;
+				//				}
 			} else {
 				out.println();
 			}

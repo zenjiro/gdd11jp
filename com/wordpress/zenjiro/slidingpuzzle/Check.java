@@ -54,6 +54,7 @@ public class Check {
 	 * @param args コマンドラン引数
 	 */
 	public static void main(final String[] args) {
+		final String inputFile = "4.11";
 		final List<Board> problems = new ArrayList<Board>();
 		{
 			final Scanner scanner = new Scanner(Check.class.getResourceAsStream("problems.txt"));
@@ -81,8 +82,8 @@ public class Check {
 			int ok = 0;
 			int failed = 0;
 			int skipped = 0;
-			final Scanner scanner = new Scanner(Check.class.getResourceAsStream("output.txt"));
-			readRersult: while (scanner.hasNextLine()) {
+			final Scanner scanner = new Scanner(Check.class.getResourceAsStream(inputFile));
+			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				Logger.getLogger(Check.class.getName()).log(Level.INFO, "result = {0}", line);
 				if (line.isEmpty()) {
@@ -91,7 +92,7 @@ public class Check {
 					final int w = problems.get(i).w;
 					final int h = problems.get(i).h;
 					String b = problems.get(i).b;
-					String goal = Util.getGoal(b);
+					final String goal = Util.getGoal(b);
 					for (int j = 0; j < line.length(); j++) {
 						switch (line.charAt(j)) {
 						case 'L':
@@ -109,10 +110,17 @@ public class Check {
 						default:
 							Logger.getLogger(Check.class.getName()).log(Level.WARNING,
 									"不正な文字{0}が含まれています：{1}", new Object[] { line.charAt(j), line });
-							break readRersult;
+							b = null;
+							break;
+						}
+						if (b == null) {
+							Logger.getLogger(Check.class.getName()).log(Level.WARNING,
+									"不可能な動き{0}が指定されました：{1}",
+									new Object[] { line.substring(0, j), problems.get(i).b });
+							break;
 						}
 					}
-					if (b.equals(goal)) {
+					if (b != null && b.equals(goal)) {
 						ok++;
 					} else {
 						failed++;

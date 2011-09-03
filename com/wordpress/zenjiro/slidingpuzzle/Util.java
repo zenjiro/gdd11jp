@@ -172,10 +172,12 @@ public class Util {
 			for (int j = 0; j < w; j++) {
 				final int index = i * w + j;
 				final String string = b.substring(index, index + 1);
-				final int number = string.equals("=") ? index : Integer.parseInt(string, 16);
-				final int row = number / w;
-				final int col = number % w;
-				ret += Math.abs(row - i) + Math.abs(col - j);
+				if (!string.equals("=")) {
+					final int number = Integer.parseInt(string, 16);
+					final int row = number / w;
+					final int col = number % w;
+					ret += Math.abs(row - i) + Math.abs(col - j);
+				}
 			}
 		}
 		return ret;

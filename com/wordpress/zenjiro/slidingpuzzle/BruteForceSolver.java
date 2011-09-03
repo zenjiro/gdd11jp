@@ -83,7 +83,6 @@ public class BruteForceSolver implements Solver {
 		final Queue<Node> queue = new PriorityQueue<Node>();
 		while (!currentNode.b.equals(goal)
 				&& System.currentTimeMillis() - startTimeMillis < limitMillis) {
-			System.out.println("current = " + currentNode);
 			final String left = Util.move(Direction.LEFT, w, h, currentNode.b);
 			if (left != null && !left.equals(startB)) {
 				queue.add(new Node(w, h, left, currentNode.path + "L", Util.getHeuristicDistance(w,

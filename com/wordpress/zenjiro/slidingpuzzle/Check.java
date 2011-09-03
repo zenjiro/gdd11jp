@@ -55,8 +55,8 @@ public class Check {
 	 * @throws FileNotFoundException ファイル未検出例外
 	 */
 	public static void main(final String[] args) throws FileNotFoundException {
-		final String inputFile = "output.txt";
-		final String outputFile = "output2.txt";
+		final String inputFile = "output2.txt";
+		final String outputFile = "output3.txt";
 		final List<Board> problems = new ArrayList<Board>();
 		{
 			final Scanner scanner = new Scanner(Check.class.getResourceAsStream("problems.txt"));

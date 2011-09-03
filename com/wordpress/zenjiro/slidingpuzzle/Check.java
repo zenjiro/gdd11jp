@@ -1,5 +1,7 @@
 package com.wordpress.zenjiro.slidingpuzzle;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
@@ -52,9 +54,11 @@ public class Check {
 	/**
 	 * メインメソッド
 	 * @param args コマンドラン引数
+	 * @throws FileNotFoundException ファイル未検出例外
 	 */
-	public static void main(final String[] args) {
+	public static void main(final String[] args) throws FileNotFoundException {
 		final String inputFile = "4.77";
+		final String outputFile = "output.txt";
 		final List<Board> problems = new ArrayList<Board>();
 		{
 			final Scanner scanner = new Scanner(Check.class.getResourceAsStream("problems.txt"));
@@ -78,6 +82,9 @@ public class Check {
 			scanner.close();
 		}
 		{
+			final PrintWriter out = new PrintWriter(SlidingPuzzle.class.getPackage().getName()
+					.replace(".", "/")
+					+ "/" + outputFile);
 			int i = 0;
 			int ok = 0;
 			int failed = 0;
@@ -87,6 +94,7 @@ public class Check {
 				final String line = scanner.nextLine();
 				Logger.getLogger(Check.class.getName()).log(Level.INFO, "result = {0}", line);
 				if (line.isEmpty()) {
+					out.println(line);
 					skipped++;
 				} else {
 					final int w = problems.get(i).w;
@@ -121,8 +129,10 @@ public class Check {
 						}
 					}
 					if (b != null && b.equals(goal)) {
+						out.println(line);
 						ok++;
 					} else {
+						out.println();
 						failed++;
 					}
 				}
@@ -132,6 +142,7 @@ public class Check {
 					ok, failed, skipped, ok / 5000.0 * 100, failed / 5000.0 * 100,
 					skipped / 5000.0 * 100);
 			scanner.close();
+			out.close();
 		}
 	}
 }

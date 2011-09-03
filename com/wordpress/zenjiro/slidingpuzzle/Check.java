@@ -88,7 +88,7 @@ public class Check {
 					ok++;
 				}
 			}
-			System.out.printf("ok / failed / skipped = %d / %d / %d = %.1f%% / %.1f%% / %.1f%%\n",
+			System.out.printf("ok : failed : skipped = %d : %d : %d = %.1f%% : %.1f%% : %.1f%%\n",
 					ok, failed, skipped, ok / 5000.0 * 100, failed / 5000.0 * 100,
 					skipped / 5000.0 * 100);
 			scanner.close();

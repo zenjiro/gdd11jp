@@ -6,10 +6,6 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.brianborowski.software.puzzle.Algorithm;
-import com.brianborowski.software.puzzle.PuzzleConfiguration;
-import com.brianborowski.software.puzzle.Utility;
-
 /**
  * スライドパズルを解く
  * http://www.brian-borowski.com/Software/Puzzle/ を使います。

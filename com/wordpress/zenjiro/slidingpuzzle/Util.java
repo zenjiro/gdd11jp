@@ -1,6 +1,8 @@
 package com.wordpress.zenjiro.slidingpuzzle;
 
 import java.util.BitSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.wordpress.zenjiro.slidingpuzzle.Const.Direction;
 
@@ -117,5 +119,43 @@ public class Util {
 		}
 		ret[ret.length - 1] = '0';
 		return new String(ret);
+	}
+
+	/**
+	 * 検算します。
+	 * @param result 結果
+	 * @param w ボードの幅
+	 * @param h ボードの高さ
+	 * @param b ボードの状態
+	 * @return 正解したかどうか
+	 */
+	public static boolean isOk(final String result, final int w, final int h, String b) {
+		final String goal = getGoal(b);
+		for (int j = 0; j < result.length(); j++) {
+			switch (result.charAt(j)) {
+			case 'L':
+				b = move(Direction.LEFT, w, h, b);
+				break;
+			case 'R':
+				b = move(Direction.RIGHT, w, h, b);
+				break;
+			case 'U':
+				b = move(Direction.UP, w, h, b);
+				break;
+			case 'D':
+				b = move(Direction.DOWN, w, h, b);
+				break;
+			default:
+				Logger.getLogger(Check.class.getName()).log(Level.WARNING, "不正な文字{0}が含まれています：{1}",
+						new Object[] { result.charAt(j), result });
+				return false;
+			}
+			if (b == null) {
+				Logger.getLogger(Check.class.getName()).log(Level.WARNING, "不可能な動き{0}が指定されました：{1}",
+						new Object[] { result.substring(0, j), b });
+				return false;
+			}
+		}
+		return b.equals(goal);
 	}
 }

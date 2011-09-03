@@ -174,9 +174,7 @@ public class Util {
 				final String string = b.substring(index, index + 1);
 				if (!string.equals("=")) {
 					final int number = (Integer.parseInt(string, 16) + w * h - 1) % (w * h);
-					final int row = number / w;
-					final int col = number % w;
-					ret += Math.abs(row - i) + Math.abs(col - j);
+					ret += Math.abs(number / w - i) + Math.abs(number % w - j);
 				}
 			}
 		}

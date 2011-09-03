@@ -55,7 +55,7 @@ public class SlidingPuzzle {
 			//					failed++;
 			//				}
 			//			} else 
-			if (w == 3 && h == 3) {
+			if (w == 3 && h == 4 || w == 4 && h == 3) {
 				final String result = new BruteForceSolver().solve(w, h, b, 1000);
 				if (result.length() > 0) {
 					if (Util.isOk(result, w, h, b)) {

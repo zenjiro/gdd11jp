@@ -75,11 +75,22 @@ public class Check {
 			scanner.close();
 		}
 		{
+			int ok = 0;
+			int failed = 0;
+			int skipped = 0;
 			final Scanner scanner = new Scanner(Check.class.getResourceAsStream("output.txt"));
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				Logger.getLogger(Check.class.getName()).log(Level.INFO, "result = {0}", line);
+				if (line.isEmpty()) {
+					skipped++;
+				} else {
+					ok++;
+				}
 			}
+			System.out.printf("ok / failed / skipped = %d / %d / %d = %.1f%% / %.1f%% / %.1f%%\n",
+					ok, failed, skipped, ok / 5000.0 * 100, failed / 5000.0 * 100,
+					skipped / 5000.0 * 100);
 			scanner.close();
 		}
 	}

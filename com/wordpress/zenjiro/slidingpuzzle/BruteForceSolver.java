@@ -57,6 +57,8 @@ public class BruteForceSolver implements Solver {
 		final String startB = b;
 		Node currentNode = new Node(w, h, b, "");
 		final Queue<Node> queue = new ArrayDeque<Node>();
+		System.out.println("current = " + currentNode + ", heuristic = "
+				+ Util.getHeuristicDistance(w, h, currentNode.b));
 		while (!currentNode.b.equals(goal)
 				&& System.currentTimeMillis() - startTimeMillis < limitMillis) {
 			final String left = Util.move(Direction.LEFT, w, h, currentNode.b);

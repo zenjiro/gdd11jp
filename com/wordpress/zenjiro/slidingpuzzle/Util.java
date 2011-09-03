@@ -170,10 +170,11 @@ public class Util {
 		int ret = 0;
 		for (int i = 0; i < h; i++) {
 			for (int j = 0; j < w; j++) {
-				int index = i * w + j;
-				int number = Integer.parseInt(b.substring(index, index + 1), 16);
-				int row = number / w;
-				int col = number % w;
+				final int index = i * w + j;
+				final String string = b.substring(index, index + 1);
+				final int number = string.equals("=") ? index : Integer.parseInt(string, 16);
+				final int row = number / w;
+				final int col = number % w;
 				ret += Math.abs(row - i) + Math.abs(col - j);
 			}
 		}

@@ -75,7 +75,8 @@ public class SlidingPuzzle {
 				out.println();
 			}
 			count++;
-			System.err.printf("%d / %d = %.1f%%\n", ok, count, (double) ok / count * 100);
+			System.err.printf("ok / count = %d / %d = %.1f%%, failed = %d\n", ok, count,
+					(double) ok / count * 100, failed);
 		}
 		scanner.close();
 		out.close();

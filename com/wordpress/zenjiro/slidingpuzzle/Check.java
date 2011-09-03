@@ -7,6 +7,8 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.wordpress.zenjiro.slidingpuzzle.Const.Direction;
+
 /**
  * 結果を検算するツール
  */
@@ -75,18 +77,48 @@ public class Check {
 			scanner.close();
 		}
 		{
+			int i = 0;
 			int ok = 0;
 			int failed = 0;
 			int skipped = 0;
 			final Scanner scanner = new Scanner(Check.class.getResourceAsStream("output.txt"));
-			while (scanner.hasNextLine()) {
+			readRersult: while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				Logger.getLogger(Check.class.getName()).log(Level.INFO, "result = {0}", line);
 				if (line.isEmpty()) {
 					skipped++;
 				} else {
-					ok++;
+					final int w = problems.get(i).w;
+					final int h = problems.get(i).h;
+					String b = problems.get(i).b;
+					String goal = Util.getGoal(b);
+					for (int j = 0; j < line.length(); j++) {
+						switch (line.charAt(j)) {
+						case 'L':
+							b = Util.move(Direction.LEFT, w, h, b);
+							break;
+						case 'R':
+							b = Util.move(Direction.RIGHT, w, h, b);
+							break;
+						case 'U':
+							b = Util.move(Direction.UP, w, h, b);
+							break;
+						case 'D':
+							b = Util.move(Direction.DOWN, w, h, b);
+							break;
+						default:
+							Logger.getLogger(Check.class.getName()).log(Level.WARNING,
+									"不正な文字{0}が含まれています：{1}", new Object[] { line.charAt(j), line });
+							break readRersult;
+						}
+					}
+					if (b.equals(goal)) {
+						ok++;
+					} else {
+						failed++;
+					}
 				}
+				i++;
 			}
 			System.out.printf("ok : failed : skipped = %d : %d : %d = %.1f%% : %.1f%% : %.1f%%\n",
 					ok, failed, skipped, ok / 5000.0 * 100, failed / 5000.0 * 100,

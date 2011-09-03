@@ -35,6 +35,7 @@ public class SlidingPuzzle {
 				"lx = {0}, rx = {1}, ux = {2}, dx = {3}, n = {4}",
 				new Integer[] { lx, rx, ux, dx, n });
 		int ok = 0;
+		int failed = 0;
 		int count = 0;
 		while (scanner.hasNext()) {
 			final int w = scanner.nextInt();
@@ -62,6 +63,7 @@ public class SlidingPuzzle {
 					Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.WARNING,
 							"結果が間違っていました：{0}", Algorithm.shortestPath);
 					out.println();
+					failed++;
 				}
 				//			} else if (w < 7 && h < 7) {
 				//				final String result = new RandomSolver().solve(w, h, b, 30000);

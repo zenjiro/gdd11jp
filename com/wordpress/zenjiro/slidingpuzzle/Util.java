@@ -152,7 +152,7 @@ public class Util {
 			}
 			if (b == null) {
 				Logger.getLogger(Util.class.getName()).log(Level.WARNING, "不可能な動き{0}が指定されました：{1}",
-						new Object[] { path.substring(0, j), b });
+						new Object[] { path.substring(0, j + 1), b });
 				return false;
 			}
 		}

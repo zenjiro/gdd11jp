@@ -30,13 +30,13 @@ public class Util {
 	}
 
 	/**
-	 * @param hex 16進表記
+	 * @param b ボードの状態
 	 * @return 壁の位置
 	 */
-	public static BitSet getWalls(final String hex) {
-		final BitSet ret = new BitSet(hex.length());
-		for (int i = 0; i < hex.length(); i++) {
-			if (hex.charAt(i) == '=') {
+	public static BitSet getWalls(final String b) {
+		final BitSet ret = new BitSet(b.length());
+		for (int i = 0; i < b.length(); i++) {
+			if (b.charAt(i) == '=') {
 				ret.set(i);
 			}
 		}

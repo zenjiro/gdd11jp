@@ -3,16 +3,10 @@ package com.wordpress.zenjiro.slidingpuzzle;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import com.brianborowski.software.puzzle.Algorithm;
-import com.brianborowski.software.puzzle.PuzzleConfiguration;
-import com.brianborowski.software.puzzle.Utility;
 
 /**
  * スライドパズルを解く
@@ -58,40 +52,34 @@ public class SlidingPuzzle {
 			final String b = problemsScanner.next();
 			Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 					"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
-			if (w == 4 && h == 4) {
-				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_15,
-						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD,
-						Utility.getDefaultNumOfThreads());
-				PuzzleConfiguration.getAlgorithm().solve(
-						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 16)),
-						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
-				if (Util.isOk(Algorithm.shortestPath, w, h, b)) {
-					out.println(Algorithm.shortestPath);
-					ok++;
-				} else {
-					Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.WARNING,
-							"結果が間違っていました：{0}", Algorithm.shortestPath);
-					out.println();
-					failed++;
-					// test
-					break;
-				}
-				//						} else 
-				//			if (w == 3 && h == 4 || w == 4 && h == 3) {
-				//				final String result = new BruteForceSolver().solve(w, h, b, 1000);
-				//				if (result.length() > 0) {
-				//					if (Util.isOk(result, w, h, b)) {
-				//						out.println(result);
-				//						ok++;
-				//					} else {
-				//						Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.WARNING,
-				//								"結果が間違っていました：{0}", result);
-				//						out.println();
-				//						failed++;
-				//					}
+			if (!isDone.poll()) {
+				//				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_15,
+				//						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD,
+				//						Utility.getDefaultNumOfThreads());
+				//				PuzzleConfiguration.getAlgorithm().solve(
+				//						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 16)),
+				//						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
+				//				if (Util.isOk(Algorithm.shortestPath, w, h, b)) {
+				//					out.println(Algorithm.shortestPath);
+				//					ok++;
 				//				} else {
+				//					Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.WARNING,
+				//							"結果が間違っていました：{0}", Algorithm.shortestPath);
 				//					out.println();
+				//					failed++;
 				//				}
+				final String result = new BruteForceSolver().solve(w, h, b, 10000);
+				if (result.length() > 0) {
+					if (Util.isOk(result, w, h, b)) {
+						out.println(result);
+						ok++;
+					} else {
+						Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.WARNING,
+								"結果が間違っていました：{0}", result);
+						out.println();
+						failed++;
+					}
+				}
 			} else {
 				out.println();
 			}

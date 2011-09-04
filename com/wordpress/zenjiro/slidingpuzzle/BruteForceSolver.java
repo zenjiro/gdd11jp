@@ -46,7 +46,11 @@ public class BruteForceSolver implements Solver {
 		@Override
 		public int compareTo(final Node node) {
 			if (this.heuristic + this.path.length() == node.heuristic + node.path.length()) {
-				return this.path.length() - node.path.length();
+				if (this.path.length() == node.path.length()) {
+					return this.hashCode() - node.hashCode();
+				} else {
+					return this.path.length() - node.path.length();
+				}
 			} else {
 				return this.heuristic + this.path.length() - node.heuristic - node.path.length();
 			}

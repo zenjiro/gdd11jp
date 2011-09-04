@@ -47,7 +47,7 @@ public class SlidingPuzzle {
 				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
 						PuzzleConfiguration.ALGORITHM_ASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
 				PuzzleConfiguration.getAlgorithm().solve(
-						Utility.arrayToLong(Utility.getArray(Util.boardToDecimal(b), 9)),
+						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 9)),
 						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
 				if (Util.isOk(Algorithm.shortestPath, w, h, b)) {
 					out.println(Algorithm.shortestPath);

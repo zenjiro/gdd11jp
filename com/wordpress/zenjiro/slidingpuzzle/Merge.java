@@ -16,18 +16,18 @@ public class Merge {
 	public static void main(final String[] args) throws FileNotFoundException {
 		final PrintWriter out = new PrintWriter(Merge.class.getPackage().getName()
 				.replace(".", "/")
-				+ "/output2.txt");
+				+ "/output.txt");
 		final String[] results = new String[5000];
-		for (String file : new String[] { "4.77", "output.txt" }) {
+		for (String file : new String[] { "bruteforce-2000", "bruteforce-10000" }) {
 			final Scanner scanner = new Scanner(Merge.class.getResourceAsStream(file));
-			for (int j = 0; j < 5000; j++) {
+			for (int i = 0; i < 5000; i++) {
 				final String line = scanner.nextLine();
-				if (results[j] == null) {
-					results[j] = line;
+				if (results[i] == null) {
+					results[i] = line;
 				} else {
-					if (results[j].isEmpty() || line.length() > 0
-							&& line.length() < results[j].length()) {
-						results[j] = line;
+					if (results[i].isEmpty() || line.length() > 0
+							&& line.length() < results[i].length()) {
+						results[i] = line;
 					}
 				}
 			}

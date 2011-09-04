@@ -13,14 +13,14 @@ public class Util {
 	/**
 	 * "ABC"を"16,17,18"に変換します。変換できない文字は、その位置に対応する数字に変換します。
 	 * FIXME これじゃダメだ。G以降が=とみなされてしまう。
-	 * @param hex 16進表記
+	 * @param b ボードの状態
 	 * @return 10進表記
 	 */
-	public static String hexToDecimal(final String hex) {
+	public static String boardToDecimal(final String b) {
 		final StringBuilder builder = new StringBuilder();
-		for (int i = 0; i < hex.length(); i++) {
+		for (int i = 0; i < b.length(); i++) {
 			try {
-				final int value = Integer.parseInt(hex.substring(i, i + 1), 16);
+				final int value = Integer.parseInt(b.substring(i, i + 1), 16);
 				builder.append(value + ",");
 			} catch (final NumberFormatException e) {
 				builder.append((i + 1) + ",");

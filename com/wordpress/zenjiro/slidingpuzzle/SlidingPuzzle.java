@@ -6,6 +6,10 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.brianborowski.software.puzzle.Algorithm;
+import com.brianborowski.software.puzzle.PuzzleConfiguration;
+import com.brianborowski.software.puzzle.Utility;
+
 /**
  * スライドパズルを解く
  * http://www.brian-borowski.com/Software/Puzzle/ を使います。
@@ -39,37 +43,37 @@ public class SlidingPuzzle {
 			final String b = scanner.next();
 			Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 					"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
-			//			if (w == 3 && h == 3) {
-			//				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
-			//						PuzzleConfiguration.ALGORITHM_ASTAR, PuzzleConfiguration.HEURISTIC_MD, 1);
-			//				PuzzleConfiguration.getAlgorithm().solve(
-			//						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 9)),
-			//						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
-			//				if (Util.isOk(Algorithm.shortestPath, w, h, b)) {
-			//					out.println(Algorithm.shortestPath);
-			//					ok++;
-			//				} else {
-			//					Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.WARNING,
-			//							"結果が間違っていました：{0}", Algorithm.shortestPath);
-			//					out.println();
-			//					failed++;
-			//				}
-			//			} else 
-			if (w == 3 && h == 4 || w == 4 && h == 3) {
-				final String result = new BruteForceSolver().solve(w, h, b, 1000);
-				if (result.length() > 0) {
-					if (Util.isOk(result, w, h, b)) {
-						out.println(result);
-						ok++;
-					} else {
-						Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.WARNING,
-								"結果が間違っていました：{0}", result);
-						out.println();
-						failed++;
-					}
+			if (w == 3 && h == 3) {
+				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
+						PuzzleConfiguration.ALGORITHM_ASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
+				PuzzleConfiguration.getAlgorithm().solve(
+						Utility.arrayToLong(Utility.getArray(Util.boardToDecimal(b), 9)),
+						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
+				if (Util.isOk(Algorithm.shortestPath, w, h, b)) {
+					out.println(Algorithm.shortestPath);
+					ok++;
 				} else {
+					Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.WARNING,
+							"結果が間違っていました：{0}", Algorithm.shortestPath);
 					out.println();
+					failed++;
 				}
+				//						} else 
+				//			if (w == 3 && h == 4 || w == 4 && h == 3) {
+				//				final String result = new BruteForceSolver().solve(w, h, b, 1000);
+				//				if (result.length() > 0) {
+				//					if (Util.isOk(result, w, h, b)) {
+				//						out.println(result);
+				//						ok++;
+				//					} else {
+				//						Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.WARNING,
+				//								"結果が間違っていました：{0}", result);
+				//						out.println();
+				//						failed++;
+				//					}
+				//				} else {
+				//					out.println();
+				//				}
 			} else {
 				out.println();
 			}

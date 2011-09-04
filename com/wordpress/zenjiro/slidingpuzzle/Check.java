@@ -55,7 +55,7 @@ public class Check {
 	 * @throws FileNotFoundException ファイル未検出例外
 	 */
 	public static void main(final String[] args) throws FileNotFoundException {
-		final String inputFile = "bruteforce-2000.txt";
+		final String inputFile = "bruteforce-10000.txt";
 		final String outputFile = "output.txt";
 		final List<Board> problems = new ArrayList<Board>();
 		{

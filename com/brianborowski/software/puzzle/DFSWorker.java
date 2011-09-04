@@ -1,5 +1,7 @@
 package com.brianborowski.software.puzzle;
 
+import java.util.BitSet;
+
 /**
  * File: DFSWorker.java
  * Author: Brian Borowski
@@ -12,8 +14,10 @@ public final class DFSWorker implements Runnable {
 	private boolean solved;
 	private char fromDirection;
 	private final char[] path = new char[81];
+	private final BitSet walls;
 
-	public DFSWorker() {
+	public DFSWorker(BitSet walls) {
+		this.walls = walls;
 	}
 
 	public void setConfig(final long currentState, final String pathStr, final int depth,
@@ -70,7 +74,7 @@ public final class DFSWorker implements Runnable {
 		final int posOfSpace = Node.posOfSpace(currentState), posPlusOne = pos + 1;
 		if (fromDirection != 'R') {
 			final long successor = IDAStarNode.moveLeft(currentState, posOfSpace);
-			if (successor != 0) {
+			if (successor != 0 && !this.walls.get(Node.posOfSpace(successor))) {
 				++this.numberExpanded;
 				if (posPlusOne + Node.h(successor) <= depth) {
 					depthFirstSearch(successor, 'L', depth, posPlusOne);
@@ -85,7 +89,7 @@ public final class DFSWorker implements Runnable {
 		}
 		if (fromDirection != 'L') {
 			final long successor = IDAStarNode.moveRight(currentState, posOfSpace);
-			if (successor != 0) {
+			if (successor != 0 && !this.walls.get(Node.posOfSpace(successor))) {
 				++this.numberExpanded;
 				if (posPlusOne + Node.h(successor) <= depth) {
 					depthFirstSearch(successor, 'R', depth, posPlusOne);
@@ -100,7 +104,7 @@ public final class DFSWorker implements Runnable {
 		}
 		if (fromDirection != 'D') {
 			final long successor = IDAStarNode.moveUp(currentState, posOfSpace);
-			if (successor != 0) {
+			if (successor != 0 && !this.walls.get(Node.posOfSpace(successor))) {
 				++this.numberExpanded;
 				if (posPlusOne + Node.h(successor) <= depth) {
 					depthFirstSearch(successor, 'U', depth, posPlusOne);
@@ -115,7 +119,7 @@ public final class DFSWorker implements Runnable {
 		}
 		if (fromDirection != 'U') {
 			final long successor = IDAStarNode.moveDown(currentState, posOfSpace);
-			if (successor != 0) {
+			if (successor != 0 && !this.walls.get(Node.posOfSpace(successor))) {
 				++this.numberExpanded;
 				if (posPlusOne + Node.h(successor) <= depth) {
 					depthFirstSearch(successor, 'D', depth, posPlusOne);

@@ -42,7 +42,7 @@ public class IDAStar extends Algorithm {
 			final int numElements = this.queue.size();
 			this.workers = new DFSWorker[numElements];
 			for (int i = numElements - 1; i >= 0; --i) {
-				this.workers[i] = new DFSWorker();
+				this.workers[i] = new DFSWorker(walls);
 			}
 			do {
 				if (PuzzleConfiguration.isVerbose()) {
@@ -75,7 +75,7 @@ public class IDAStar extends Algorithm {
 	private void solveSingleThreaded(final long currentState, final BitSet walls) {
 		initialMovesEstimate = movesRequired = Node.h(currentState);
 		this.workers = new DFSWorker[1];
-		final DFSWorker dfsWorker = new DFSWorker();
+		final DFSWorker dfsWorker = new DFSWorker(walls);
 		// Add to array so GUI can poll it for the stats in real time.
 		this.workers[0] = dfsWorker;
 		do {

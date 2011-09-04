@@ -45,7 +45,8 @@ public class SlidingPuzzle {
 					"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
 			if (w == 3 && h == 3) {
 				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_8,
-						PuzzleConfiguration.ALGORITHM_ASTAR, PuzzleConfiguration.HEURISTIC_PD, 1);
+						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_MD,
+						Utility.getDefaultNumOfThreads());
 				PuzzleConfiguration.getAlgorithm().solve(
 						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 9)),
 						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
@@ -57,6 +58,8 @@ public class SlidingPuzzle {
 							"結果が間違っていました：{0}", Algorithm.shortestPath);
 					out.println();
 					failed++;
+					// test
+					break;
 				}
 				//						} else 
 				//			if (w == 3 && h == 4 || w == 4 && h == 3) {

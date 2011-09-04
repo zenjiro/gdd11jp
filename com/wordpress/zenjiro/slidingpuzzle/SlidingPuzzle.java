@@ -2,6 +2,8 @@ package com.wordpress.zenjiro.slidingpuzzle;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,26 +23,37 @@ public class SlidingPuzzle {
 	 * @throws IOException 入出力例外
 	 */
 	public static void main(final String[] args) throws IOException {
-		final Scanner scanner = new Scanner(SlidingPuzzle.class.getResourceAsStream("problems.txt"));
+		final List<Boolean> isDone = new ArrayList<Boolean>();
+		final Scanner resultsScanner = new Scanner(SlidingPuzzle.class.getResourceAsStream("8.16"));
+		while (resultsScanner.hasNextLine()) {
+			if (resultsScanner.nextLine().length() > 0) {
+				isDone.add(true);
+			} else {
+				isDone.add(false);
+			}
+		}
+		resultsScanner.close();
+		final Scanner problemsScanner = new Scanner(
+				SlidingPuzzle.class.getResourceAsStream("problems.txt"));
 		final PrintWriter out = new PrintWriter(SlidingPuzzle.class.getPackage().getName()
 				.replace(".", "/")
 				+ "/output.txt");
-		scanner.useDelimiter("[\\s,]");
-		final int lx = scanner.nextInt();
-		final int rx = scanner.nextInt();
-		final int ux = scanner.nextInt();
-		final int dx = scanner.nextInt();
-		final int n = scanner.nextInt();
+		problemsScanner.useDelimiter("[\\s,]");
+		final int lx = problemsScanner.nextInt();
+		final int rx = problemsScanner.nextInt();
+		final int ux = problemsScanner.nextInt();
+		final int dx = problemsScanner.nextInt();
+		final int n = problemsScanner.nextInt();
 		Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 				"lx = {0}, rx = {1}, ux = {2}, dx = {3}, n = {4}",
 				new Integer[] { lx, rx, ux, dx, n });
 		int ok = 0;
 		int failed = 0;
 		int count = 0;
-		while (scanner.hasNext()) {
-			final int w = scanner.nextInt();
-			final int h = scanner.nextInt();
-			final String b = scanner.next();
+		while (problemsScanner.hasNext()) {
+			final int w = problemsScanner.nextInt();
+			final int h = problemsScanner.nextInt();
+			final String b = problemsScanner.next();
 			Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 					"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
 			if (w == 4 && h == 4) {
@@ -84,7 +97,7 @@ public class SlidingPuzzle {
 			System.err.printf("ok / count = %d / %d = %.1f%%, failed = %d\n", ok, count,
 					(double) ok / count * 100, failed);
 		}
-		scanner.close();
+		problemsScanner.close();
 		out.close();
 	}
 }

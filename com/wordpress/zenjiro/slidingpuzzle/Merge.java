@@ -5,6 +5,8 @@ import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * 回答をマージするツール
@@ -20,12 +22,14 @@ public class Merge {
 				.replace(".", "/")
 				+ "/output.txt");
 		final String[] results = new String[5000];
-		for (final File file : new File(".").listFiles(new FileFilter() {
-			@Override
-			public boolean accept(final File file) {
-				return file.getName().matches("output[-0-9]+.txt");
-			}
-		})) {
+		for (final File file : new File(Merge.class.getPackage().getName().replace(".", "/"))
+				.listFiles(new FileFilter() {
+					@Override
+					public boolean accept(final File file) {
+						return file.getName().matches("5.31|6.63");
+					}
+				})) {
+			Logger.getLogger(Merge.class.getName()).log(Level.INFO, "file = {0}", file);
 			final Scanner scanner = new Scanner(file);
 			for (int i = 0; i < 5000; i++) {
 				final String line = scanner.nextLine();

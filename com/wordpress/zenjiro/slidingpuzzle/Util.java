@@ -168,12 +168,13 @@ public class Util {
 	 */
 	public static int getHeuristicDistance(final int w, final int h, final String b) {
 		int ret = 0;
+		final String string = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		for (int i = 0; i < h; i++) {
 			for (int j = 0; j < w; j++) {
 				final int index = i * w + j;
-				final String string = b.substring(index, index + 1);
-				if (!string.equals("=")) {
-					final int number = (Integer.parseInt(string, 16) + w * h - 1) % (w * h);
+				final char c = b.charAt(index);
+				if (c != '=') {
+					final int number = (string.indexOf(c) + w * h - 1) % (w * h);
 					ret += Math.abs(number / w - i) + Math.abs(number % w - j);
 				}
 			}

@@ -18,7 +18,7 @@ public class Merge {
 				.replace(".", "/")
 				+ "/output.txt");
 		final String[] results = new String[5000];
-		for (String file : new String[] { "bruteforce-2000", "bruteforce-10000" }) {
+		for (String file : new String[] { "bruteforce-2000.txt", "bruteforce-10000.txt" }) {
 			final Scanner scanner = new Scanner(Merge.class.getResourceAsStream(file));
 			for (int i = 0; i < 5000; i++) {
 				final String line = scanner.nextLine();

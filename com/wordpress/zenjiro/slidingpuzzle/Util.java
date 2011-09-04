@@ -12,6 +12,7 @@ import com.wordpress.zenjiro.slidingpuzzle.Const.Direction;
 public class Util {
 	/**
 	 * "ABC"を"16,17,18"に変換します。変換できない文字は、その位置に対応する数字に変換します。
+	 * FIXME これじゃダメだ。G以降が=とみなされてしまう。
 	 * @param hex 16進表記
 	 * @return 10進表記
 	 */

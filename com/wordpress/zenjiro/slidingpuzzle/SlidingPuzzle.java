@@ -2,8 +2,10 @@ package com.wordpress.zenjiro.slidingpuzzle;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +25,7 @@ public class SlidingPuzzle {
 	 * @throws IOException 入出力例外
 	 */
 	public static void main(final String[] args) throws IOException {
-		final List<Boolean> isDone = new ArrayList<Boolean>();
+		final Queue<Boolean> isDone = new ArrayDeque<Boolean>();
 		final Scanner resultsScanner = new Scanner(SlidingPuzzle.class.getResourceAsStream("8.16"));
 		while (resultsScanner.hasNextLine()) {
 			if (resultsScanner.nextLine().length() > 0) {

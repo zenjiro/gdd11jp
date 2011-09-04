@@ -68,8 +68,7 @@ public class SlidingPuzzle {
 				//					out.println();
 				//					failed++;
 				//				}
-				if (w < 5 && h < 5) {
-				final String result = new BruteForceSolver().solve(w, h, b, 4000);
+				final String result = new RandomSolver().solve(w, h, b, 10000);
 				if (result.length() > 0) {
 					if (Util.isOk(result, w, h, b)) {
 						out.println(result);
@@ -80,9 +79,6 @@ public class SlidingPuzzle {
 						out.println();
 						failed++;
 					}
-				}
-				} else {
-					out.println();
 				}
 			} else {
 				out.println();

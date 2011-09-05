@@ -50,8 +50,7 @@ public class BruteForceSolver implements Solver {
 			if (this.heuristic + this.path.length() == node.heuristic + node.path.length()) {
 				return this.path.length() - node.path.length();
 			} else {
-				return (int) Math.signum(this.heuristic + this.path.length() - node.heuristic
-						- node.path.length());
+				return this.heuristic + this.path.length() - node.heuristic - node.path.length();
 			}
 		}
 

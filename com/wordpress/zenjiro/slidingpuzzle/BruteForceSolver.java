@@ -26,7 +26,7 @@ public class BruteForceSolver implements Solver {
 		/**
 		 * ヒューリスティック距離
 		 */
-		final double heuristic;
+		final int heuristic;
 
 		/**
 		 * ノードを初期化します。
@@ -34,7 +34,7 @@ public class BruteForceSolver implements Solver {
 		 * @param path ここまでの手順
 		 * @param heuristic ヒューリスティック距離
 		 */
-		public Node(final String b, final String path, final double heuristic) {
+		public Node(final String b, final String path, final int heuristic) {
 			this.b = b;
 			this.path = path;
 			this.heuristic = heuristic;

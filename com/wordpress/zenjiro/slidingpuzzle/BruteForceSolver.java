@@ -1,7 +1,9 @@
 package com.wordpress.zenjiro.slidingpuzzle;
 
+import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Set;
 
 import com.wordpress.zenjiro.slidingpuzzle.Const.Direction;
 
@@ -69,24 +71,26 @@ public class BruteForceSolver implements Solver {
 		final String startB = b;
 		Node currentNode = new Node(b, "", Util.getHeuristicDistance(w, h, b));
 		final Queue<Node> queue = new PriorityQueue<Node>();
+		final Set<String> visited = new HashSet<String>();
 		while (!currentNode.b.equals(goal)
 				&& System.currentTimeMillis() - startTimeMillis < limitMillis) {
+			visited.add(currentNode.b);
 			final String left = Util.move(Direction.LEFT, w, h, currentNode.b);
-			if (left != null && !left.equals(startB)) {
+			if (left != null && !left.equals(startB) && !visited.contains(left)) {
 				queue.add(new Node(left, currentNode.path + "L", Util.getHeuristicDistance(w, h,
 						left)));
 			}
 			final String right = Util.move(Direction.RIGHT, w, h, currentNode.b);
-			if (right != null && !right.equals(startB)) {
+			if (right != null && !right.equals(startB) && !visited.contains(right)) {
 				queue.add(new Node(right, currentNode.path + "R", Util.getHeuristicDistance(w, h,
 						right)));
 			}
 			final String up = Util.move(Direction.UP, w, h, currentNode.b);
-			if (up != null && !up.equals(startB)) {
+			if (up != null && !up.equals(startB) && !visited.contains(up)) {
 				queue.add(new Node(up, currentNode.path + "U", Util.getHeuristicDistance(w, h, up)));
 			}
 			final String down = Util.move(Direction.DOWN, w, h, currentNode.b);
-			if (down != null && !down.equals(startB)) {
+			if (down != null && !down.equals(startB) && !visited.contains(down)) {
 				queue.add(new Node(down, currentNode.path + "D", Util.getHeuristicDistance(w, h,
 						down)));
 			}

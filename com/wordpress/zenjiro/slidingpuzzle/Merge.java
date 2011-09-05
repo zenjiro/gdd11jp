@@ -20,25 +20,27 @@ public class Merge {
 	public static void main(final String[] args) throws FileNotFoundException {
 		final PrintWriter out = new PrintWriter(Merge.class.getPackage().getName()
 				.replace(".", "/")
-				+ "/output.txt");
+				+ "/output2.txt");
 		final String[] results = new String[5000];
 		for (final File file : new File(Merge.class.getPackage().getName().replace(".", "/"))
 				.listFiles(new FileFilter() {
 					@Override
 					public boolean accept(final File file) {
-						return file.getName().matches("7.63|4x4");
+						return file.getName().matches("output.txt|8.16");
 					}
 				})) {
 			Logger.getLogger(Merge.class.getName()).log(Level.INFO, "file = {0}", file);
 			final Scanner scanner = new Scanner(file);
 			for (int i = 0; i < 5000; i++) {
-				final String line = scanner.nextLine();
-				if (results[i] == null) {
-					results[i] = line;
-				} else {
-					if (results[i].isEmpty() || line.length() > 0
-							&& line.length() < results[i].length()) {
+				if (scanner.hasNextLine()) {
+					final String line = scanner.nextLine();
+					if (results[i] == null) {
 						results[i] = line;
+					} else {
+						if (results[i].isEmpty() || line.length() > 0
+								&& line.length() < results[i].length()) {
+							results[i] = line;
+						}
 					}
 				}
 			}

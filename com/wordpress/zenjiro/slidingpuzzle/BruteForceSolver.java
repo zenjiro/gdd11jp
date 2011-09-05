@@ -44,7 +44,7 @@ public class BruteForceSolver implements Solver {
 		/**
 		 * ヒューリスティック距離とパス長の重み付けを調整するマジックナンバー
 		 */
-		final static int MAGIC = 1;
+		final static int MAGIC = 0;
 
 		@Override
 		public String toString() {
@@ -83,7 +83,7 @@ public class BruteForceSolver implements Solver {
 		final Set<String> visited = new HashSet<String>();
 		while (!currentNode.b.equals(goal)
 				&& System.currentTimeMillis() - startTimeMillis < limitMillis) {
-			if (visited.size() % 100000 == 0)
+			if (visited.size() % 50000 == 0)
 				System.out.println(currentNode);
 			visited.add(currentNode.b);
 			final String left = Util.move(Direction.LEFT, w, h, currentNode.b);

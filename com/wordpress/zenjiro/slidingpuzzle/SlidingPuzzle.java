@@ -20,7 +20,7 @@ public class SlidingPuzzle {
 	 */
 	public static void main(final String[] args) throws IOException {
 		final Queue<Boolean> isDone = new ArrayDeque<Boolean>();
-		final Scanner resultsScanner = new Scanner(SlidingPuzzle.class.getResourceAsStream("8.82"));
+		final Scanner resultsScanner = new Scanner(SlidingPuzzle.class.getResourceAsStream("9.4"));
 		while (resultsScanner.hasNextLine()) {
 			if (resultsScanner.nextLine().length() > 0) {
 				isDone.add(true);
@@ -51,7 +51,7 @@ public class SlidingPuzzle {
 			final int h = problemsScanner.nextInt();
 			final String b = problemsScanner.next();
 			count++;
-			if (!isDone.poll() && w == 5 && h == 3) {
+			if (!isDone.poll() && (w == 3 && h == 5 || w == 5 && h == 3)) {
 				Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 						"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
 				//				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_15,
@@ -69,11 +69,12 @@ public class SlidingPuzzle {
 				//					out.println();
 				//					failed++;
 				//				}
-				final String result = new BruteForceSolver().solve(w, h, b, 60000);
+				final String result = new BruteForceSolver().solve(w, h, b, 10000);
 				if (result.length() > 0) {
 					if (Util.isOk(result, w, h, b)) {
 						out.println(result);
 						ok++;
+						System.out.println("OK!");
 					} else {
 						Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.WARNING,
 								"結果が間違っていました：{0}", result);

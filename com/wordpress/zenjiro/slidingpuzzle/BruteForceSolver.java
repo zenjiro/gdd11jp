@@ -1,5 +1,6 @@
 package com.wordpress.zenjiro.slidingpuzzle;
 
+import java.util.Formatter;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -40,17 +41,25 @@ public class BruteForceSolver implements Solver {
 			this.heuristic = heuristic;
 		}
 
+		/**
+		 * ヒューリスティック距離とパス長の重み付けを調整するマジックナンバー
+		 */
+		final static int MAGIC = 1;
+
 		@Override
 		public String toString() {
-			return this.b + ", " + this.path + ", " + (this.heuristic + this.path.length());
+			return new Formatter().format("%s, %s, h=%d, d=%d", this.b, this.path, this.heuristic,
+					this.path.length() * MAGIC).toString();
 		}
 
 		@Override
 		public int compareTo(final Node node) {
-			if (this.heuristic + this.path.length() == node.heuristic + node.path.length()) {
+			if (this.heuristic + this.path.length() * MAGIC == node.heuristic + node.path.length()
+					* MAGIC) {
 				return this.path.length() - node.path.length();
 			} else {
-				return this.heuristic + this.path.length() - node.heuristic - node.path.length();
+				return this.heuristic + this.path.length() * MAGIC - node.heuristic
+						- node.path.length() * MAGIC;
 			}
 		}
 
@@ -74,6 +83,8 @@ public class BruteForceSolver implements Solver {
 		final Set<String> visited = new HashSet<String>();
 		while (!currentNode.b.equals(goal)
 				&& System.currentTimeMillis() - startTimeMillis < limitMillis) {
+			if (visited.size() % 100000 == 0)
+				System.out.println(currentNode);
 			visited.add(currentNode.b);
 			final String left = Util.move(Direction.LEFT, w, h, currentNode.b);
 			if (left != null && !left.equals(startB) && !visited.contains(left)) {

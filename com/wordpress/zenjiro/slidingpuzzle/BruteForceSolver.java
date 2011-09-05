@@ -44,22 +44,22 @@ public class BruteForceSolver implements Solver {
 		/**
 		 * ヒューリスティック距離とパス長の重み付けを調整するマジックナンバー
 		 */
-		final static int MAGIC = 0;
+		final static int MAGIC = 10;
 
 		@Override
 		public String toString() {
 			return new Formatter().format("%s, h=%d, d=%d, %s", this.b, this.heuristic,
-					this.path.length() * MAGIC, this.path).toString();
+					this.path.length() / MAGIC, this.path).toString();
 		}
 
 		@Override
 		public int compareTo(final Node node) {
-			if (this.heuristic + this.path.length() * MAGIC == node.heuristic + node.path.length()
-					* MAGIC) {
+			if (this.heuristic + this.path.length() / MAGIC == node.heuristic + node.path.length()
+					/ MAGIC) {
 				return this.path.length() - node.path.length();
 			} else {
-				return this.heuristic + this.path.length() * MAGIC - node.heuristic
-						- node.path.length() * MAGIC;
+				return this.heuristic + this.path.length() / MAGIC - node.heuristic
+						- node.path.length() / MAGIC;
 			}
 		}
 

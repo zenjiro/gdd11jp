@@ -20,13 +20,13 @@ public class Merge {
 	public static void main(final String[] args) throws FileNotFoundException {
 		final PrintWriter out = new PrintWriter(Merge.class.getPackage().getName()
 				.replace(".", "/")
-				+ "/output2.txt");
+				+ "/merged.txt");
 		final String[] results = new String[5000];
 		for (final File file : new File(Merge.class.getPackage().getName().replace(".", "/"))
 				.listFiles(new FileFilter() {
 					@Override
 					public boolean accept(final File file) {
-						return file.getName().matches("output.txt|8.59");
+						return file.getName().matches("output.txt|8.82");
 					}
 				})) {
 			Logger.getLogger(Merge.class.getName()).log(Level.INFO, "file = {0}", file);

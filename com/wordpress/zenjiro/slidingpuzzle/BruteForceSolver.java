@@ -48,8 +48,8 @@ public class BruteForceSolver implements Solver {
 
 		@Override
 		public String toString() {
-			return new Formatter().format("%s, %s, h=%d, d=%d", this.b, this.path, this.heuristic,
-					this.path.length() * MAGIC).toString();
+			return new Formatter().format("%s, h=%d, d=%d, %s", this.b, this.heuristic,
+					this.path.length() * MAGIC, this.path).toString();
 		}
 
 		@Override

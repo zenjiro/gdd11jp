@@ -80,6 +80,8 @@ public class SlidingPuzzle {
 						out.println();
 						failed++;
 					}
+				} else {
+					out.println();
 				}
 				System.err.printf("ok / count = %d / %d = %.1f%%, failed = %d\n", ok, count,
 						(double) ok / count * 100, failed);

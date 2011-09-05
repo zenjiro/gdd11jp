@@ -51,7 +51,7 @@ public class SlidingPuzzle {
 			final int h = problemsScanner.nextInt();
 			final String b = problemsScanner.next();
 			count++;
-			if (!isDone.poll() && w == 3 && h == 5) {
+			if (!isDone.poll() && w == 5 && h == 3) {
 				Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 						"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
 				//				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_15,

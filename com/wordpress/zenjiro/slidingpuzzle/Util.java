@@ -179,6 +179,6 @@ public class Util {
 				}
 			}
 		}
-		return (double) ret / w / h;
+		return ret;
 	}
 }

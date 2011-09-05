@@ -3,6 +3,7 @@ package com.wordpress.zenjiro.slidingpuzzle;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Scanner;
@@ -58,6 +59,7 @@ public class Check {
 		final String inputFile = "output.txt";
 		final String outputFile = "output2.txt";
 		final List<Board> problems = new ArrayList<Board>();
+		final int[][] counts = new int[7][7];
 		{
 			final Scanner scanner = new Scanner(Check.class.getResourceAsStream("problems.txt"));
 			scanner.useDelimiter("[\\s,]");
@@ -76,17 +78,19 @@ public class Check {
 				final Board board = new Board(w, h, b);
 				Logger.getLogger(Check.class.getName()).log(Level.INFO, "board = {0}", board);
 				problems.add(board);
+				counts[h][w]++;
 			}
 			scanner.close();
 		}
+		int ok = 0;
+		int failed = 0;
+		int skipped = 0;
+		final int[][] oks = new int[7][7];
 		{
 			final PrintWriter out = new PrintWriter(SlidingPuzzle.class.getPackage().getName()
 					.replace(".", "/")
 					+ "/" + outputFile);
 			int i = 0;
-			int ok = 0;
-			int failed = 0;
-			int skipped = 0;
 			final Scanner scanner = new Scanner(Check.class.getResourceAsStream(inputFile));
 			while (scanner.hasNextLine()) {
 				final String path = scanner.nextLine();
@@ -98,6 +102,7 @@ public class Check {
 					if (Util.isOk(path, problems.get(i).w, problems.get(i).h, problems.get(i).b)) {
 						out.println(path);
 						ok++;
+						oks[problems.get(i).h][problems.get(i).w]++;
 					} else {
 						out.println();
 						failed++;
@@ -105,11 +110,18 @@ public class Check {
 				}
 				i++;
 			}
-			System.out.printf("ok : failed : skipped = %d : %d : %d = %.1f%% : %.1f%% : %.1f%%\n",
-					ok, failed, skipped, ok / 5000.0 * 100, failed / 5000.0 * 100,
-					skipped / 5000.0 * 100);
 			scanner.close();
 			out.close();
+		}
+		System.out.printf("ok : failed : skipped = %d : %d : %d = %.1f%% : %.1f%% : %.1f%%\n", ok,
+				failed, skipped, ok / 5000.0 * 100, failed / 5000.0 * 100, skipped / 5000.0 * 100);
+		System.out.println("h, w\t3\t\t4\t\t5\t\t6");
+		for (int i = 3; i < 7; i++) {
+			System.out.print(i);
+			for (int j = 3; j < 7; j++) {
+				System.out.printf("\t%d/%d", oks[i][j], counts[i][j]);
+			}
+			System.out.println();
 		}
 	}
 }

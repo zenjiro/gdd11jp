@@ -26,7 +26,7 @@ public class Merge {
 				.listFiles(new FileFilter() {
 					@Override
 					public boolean accept(final File file) {
-						return file.getName().matches("output.txt|8.16");
+						return file.getName().matches("output.txt|8.59");
 					}
 				})) {
 			Logger.getLogger(Merge.class.getName()).log(Level.INFO, "file = {0}", file);

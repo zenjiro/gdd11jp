@@ -52,7 +52,7 @@ public class SlidingPuzzle {
 			final String b = problemsScanner.next();
 			Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 					"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
-			if (!isDone.poll()) {
+			if (!isDone.poll() && w == 3 && h == 5) {
 				//				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_15,
 				//						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD,
 				//						Utility.getDefaultNumOfThreads());
@@ -68,11 +68,12 @@ public class SlidingPuzzle {
 				//					out.println();
 				//					failed++;
 				//				}
-				final String result = new RandomSolver().solve(w, h, b, 10000);
+				final String result = new AStarSolver().solve(w, h, b, 10000);
 				if (result.length() > 0) {
 					if (Util.isOk(result, w, h, b)) {
 						out.println(result);
 						ok++;
+						System.out.println("OK!");
 					} else {
 						Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.WARNING,
 								"結果が間違っていました：{0}", result);
@@ -80,6 +81,7 @@ public class SlidingPuzzle {
 						failed++;
 					}
 				}
+				break;
 			} else {
 				out.println();
 			}

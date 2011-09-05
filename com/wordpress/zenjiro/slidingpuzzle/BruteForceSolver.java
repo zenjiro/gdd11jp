@@ -55,7 +55,7 @@ public class BruteForceSolver implements Solver {
 		@Override
 		public boolean equals(final Object object) {
 			if (object instanceof Node) {
-				return this.path.equals(((Node) object).path);
+				return this.b.equals(((Node) object).b);
 			} else {
 				return false;
 			}

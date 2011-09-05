@@ -166,7 +166,7 @@ public class Util {
 	 * @param b ボードの状態
 	 * @return ヒューリスティック距離
 	 */
-	public static int getHeuristicDistance(final int w, final int h, final String b) {
+	public static double getHeuristicDistance(final int w, final int h, final String b) {
 		int ret = 0;
 		final String string = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		for (int i = 0; i < h; i++) {
@@ -179,6 +179,6 @@ public class Util {
 				}
 			}
 		}
-		return ret;
+		return (double) ret / w / h;
 	}
 }

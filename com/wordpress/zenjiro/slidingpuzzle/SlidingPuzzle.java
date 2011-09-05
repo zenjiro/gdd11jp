@@ -20,7 +20,7 @@ public class SlidingPuzzle {
 	 */
 	public static void main(final String[] args) throws IOException {
 		final Queue<Boolean> isDone = new ArrayDeque<Boolean>();
-		final Scanner resultsScanner = new Scanner(SlidingPuzzle.class.getResourceAsStream("8.59"));
+		final Scanner resultsScanner = new Scanner(SlidingPuzzle.class.getResourceAsStream("8.82"));
 		while (resultsScanner.hasNextLine()) {
 			if (resultsScanner.nextLine().length() > 0) {
 				isDone.add(true);

@@ -51,7 +51,7 @@ public class SlidingPuzzle {
 			final int h = problemsScanner.nextInt();
 			final String b = problemsScanner.next();
 			count++;
-			if (!isDone.poll() && (w == 3 && h == 5 || w == 5 && h == 3)) {
+			if (!isDone.poll()) {
 				Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 						"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
 				//				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_15,
@@ -69,7 +69,7 @@ public class SlidingPuzzle {
 				//					out.println();
 				//					failed++;
 				//				}
-				final String result = new BruteForceSolver().solve(w, h, b, 10000);
+				final String result = new BruteForceSolver().solve(w, h, b, 60000);
 				if (result.length() > 0) {
 					if (Util.isOk(result, w, h, b)) {
 						out.println(result);

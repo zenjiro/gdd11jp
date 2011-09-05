@@ -68,7 +68,7 @@ public class SlidingPuzzle {
 				//					out.println();
 				//					failed++;
 				//				}
-				final String result = new AStarSolver().solve(w, h, b, 10000);
+				final String result = new BruteForceSolver().solve(w, h, b, 10000);
 				if (result.length() > 0) {
 					if (Util.isOk(result, w, h, b)) {
 						out.println(result);

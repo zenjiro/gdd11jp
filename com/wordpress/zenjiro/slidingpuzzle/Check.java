@@ -60,26 +60,26 @@ public class Check {
 		final List<Board> problems = new ArrayList<Board>();
 		final int[][] counts = new int[7][7];
 		{
-			final Scanner scanner = new Scanner(Check.class.getResourceAsStream("problems.txt"));
-			scanner.useDelimiter("[\\s,]");
-			final int lx = scanner.nextInt();
-			final int rx = scanner.nextInt();
-			final int ux = scanner.nextInt();
-			final int dx = scanner.nextInt();
-			final int n = scanner.nextInt();
+			final Scanner problemsScanner = new Scanner(Check.class.getResourceAsStream("problems.txt"));
+			problemsScanner.useDelimiter("[\\s,]");
+			final int lx = problemsScanner.nextInt();
+			final int rx = problemsScanner.nextInt();
+			final int ux = problemsScanner.nextInt();
+			final int dx = problemsScanner.nextInt();
+			final int n = problemsScanner.nextInt();
 			Logger.getLogger(Check.class.getName()).log(Level.INFO,
 					"lx = {0}, rx = {1}, ux = {2}, dx = {3}, n = {4}",
 					new Integer[] { lx, rx, ux, dx, n });
-			while (scanner.hasNext()) {
-				final int w = scanner.nextInt();
-				final int h = scanner.nextInt();
-				final String b = scanner.next();
+			while (problemsScanner.hasNext()) {
+				final int w = problemsScanner.nextInt();
+				final int h = problemsScanner.nextInt();
+				final String b = problemsScanner.next();
 				final Board board = new Board(w, h, b);
 				Logger.getLogger(Check.class.getName()).log(Level.INFO, "board = {0}", board);
 				problems.add(board);
 				counts[h][w]++;
 			}
-			scanner.close();
+			problemsScanner.close();
 		}
 		int ok = 0;
 		int failed = 0;
@@ -90,9 +90,9 @@ public class Check {
 					.replace(".", "/")
 					+ "/" + outputFile);
 			int i = 0;
-			final Scanner scanner = new Scanner(Check.class.getResourceAsStream(inputFile));
-			while (scanner.hasNextLine()) {
-				final String path = scanner.nextLine();
+			final Scanner resultsScanner = new Scanner(Check.class.getResourceAsStream(inputFile));
+			while (resultsScanner.hasNextLine()) {
+				final String path = resultsScanner.nextLine();
 				Logger.getLogger(Check.class.getName()).log(Level.INFO, "path = {0}", path);
 				if (path.isEmpty()) {
 					out.println(path);
@@ -109,7 +109,7 @@ public class Check {
 				}
 				i++;
 			}
-			scanner.close();
+			resultsScanner.close();
 			out.close();
 		}
 		System.out.printf("ok : failed : skipped = %d : %d : %d = %.1f%% : %.1f%% : %.1f%%\n", ok,

@@ -55,8 +55,9 @@ public class Check {
 	 * @throws FileNotFoundException ファイル未検出例外
 	 */
 	public static void main(final String[] args) throws FileNotFoundException {
-		final String inputFile = "merged.txt";
+		final String inputFile = "29.98-ng";
 		final String outputFile = "checked.txt";
+		final int pathLimit = 236;
 		final List<Board> problems = new ArrayList<Board>();
 		final int[][] counts = new int[7][7];
 		final Scanner problemsScanner = new Scanner(Check.class.getResourceAsStream("problems.txt"));
@@ -82,6 +83,10 @@ public class Check {
 		int ok = 0;
 		int failed = 0;
 		int skipped = 0;
+		int l = 0;
+		int r = 0;
+		int u = 0;
+		int d = 0;
 		final int[][] oks = new int[7][7];
 		{
 			final PrintWriter out = new PrintWriter(SlidingPuzzle.class.getPackage().getName()
@@ -91,15 +96,19 @@ public class Check {
 			final Scanner resultsScanner = new Scanner(Check.class.getResourceAsStream(inputFile));
 			while (resultsScanner.hasNextLine()) {
 				final String path = resultsScanner.nextLine();
-				Logger.getLogger(Check.class.getName()).log(Level.INFO, "path = {0}", path);
-				if (path.isEmpty()) {
-					out.println(path);
+				if (path.isEmpty() || path.length() > pathLimit) {
+					out.println();
 					skipped++;
 				} else {
+					Logger.getLogger(Check.class.getName()).log(Level.INFO, "path = {0}", path);
 					if (Util.isOk(path, problems.get(i).w, problems.get(i).h, problems.get(i).b)) {
 						out.println(path);
 						ok++;
 						oks[problems.get(i).h][problems.get(i).w]++;
+						l += path.replaceAll("[^L]+", "").length();
+						r += path.replaceAll("[^R]+", "").length();
+						u += path.replaceAll("[^U]+", "").length();
+						d += path.replaceAll("[^D]+", "").length();
 					} else {
 						out.println();
 						failed++;
@@ -112,6 +121,10 @@ public class Check {
 		}
 		System.out.printf("ok : failed : skipped = %d : %d : %d = %.1f%% : %.1f%% : %.1f%%\n", ok,
 				failed, skipped, ok / 5000.0 * 100, failed / 5000.0 * 100, skipped / 5000.0 * 100);
+		System.out.printf(
+				"解答：%d/%d（%.1f%%）L：%d/%d（%.1f%%）R：%d/%d（%.1f%%）U：%d/%d（%.1f%%）D：%d/%d（%.1f%%）\n",
+				ok, n, (double) ok / n * 100, l, lx, (double) l / lx * 100, r, rx, (double) r / rx
+						* 100, u, ux, (double) u / ux * 100, d, dx, (double) d / dx * 100);
 		System.out.println("h, w\t3\t\t4\t\t5\t\t6");
 		for (int i = 3; i < 7; i++) {
 			System.out.print(i);

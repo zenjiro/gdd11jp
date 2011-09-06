@@ -59,28 +59,26 @@ public class Check {
 		final String outputFile = "checked.txt";
 		final List<Board> problems = new ArrayList<Board>();
 		final int[][] counts = new int[7][7];
-		{
-			final Scanner problemsScanner = new Scanner(Check.class.getResourceAsStream("problems.txt"));
-			problemsScanner.useDelimiter("[\\s,]");
-			final int lx = problemsScanner.nextInt();
-			final int rx = problemsScanner.nextInt();
-			final int ux = problemsScanner.nextInt();
-			final int dx = problemsScanner.nextInt();
-			final int n = problemsScanner.nextInt();
-			Logger.getLogger(Check.class.getName()).log(Level.INFO,
-					"lx = {0}, rx = {1}, ux = {2}, dx = {3}, n = {4}",
-					new Integer[] { lx, rx, ux, dx, n });
-			while (problemsScanner.hasNext()) {
-				final int w = problemsScanner.nextInt();
-				final int h = problemsScanner.nextInt();
-				final String b = problemsScanner.next();
-				final Board board = new Board(w, h, b);
-				Logger.getLogger(Check.class.getName()).log(Level.INFO, "board = {0}", board);
-				problems.add(board);
-				counts[h][w]++;
-			}
-			problemsScanner.close();
+		final Scanner problemsScanner = new Scanner(Check.class.getResourceAsStream("problems.txt"));
+		problemsScanner.useDelimiter("[\\s,]");
+		final int lx = problemsScanner.nextInt();
+		final int rx = problemsScanner.nextInt();
+		final int ux = problemsScanner.nextInt();
+		final int dx = problemsScanner.nextInt();
+		final int n = problemsScanner.nextInt();
+		Logger.getLogger(Check.class.getName()).log(Level.INFO,
+				"lx = {0}, rx = {1}, ux = {2}, dx = {3}, n = {4}",
+				new Integer[] { lx, rx, ux, dx, n });
+		while (problemsScanner.hasNext()) {
+			final int w = problemsScanner.nextInt();
+			final int h = problemsScanner.nextInt();
+			final String b = problemsScanner.next();
+			final Board board = new Board(w, h, b);
+			Logger.getLogger(Check.class.getName()).log(Level.INFO, "board = {0}", board);
+			problems.add(board);
+			counts[h][w]++;
 		}
+		problemsScanner.close();
 		int ok = 0;
 		int failed = 0;
 		int skipped = 0;

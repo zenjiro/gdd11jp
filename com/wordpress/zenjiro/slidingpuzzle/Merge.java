@@ -27,7 +27,7 @@ public class Merge {
 					@Override
 					public boolean accept(final File file) {
 						return file.getName().matches(
-								"18.02-0907|18.22-0908");
+								"18.22-0908|39.58-ng");
 					}
 				})) {
 			Logger.getLogger(Merge.class.getName()).log(Level.INFO, "file = {0}", file);

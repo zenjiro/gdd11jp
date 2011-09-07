@@ -26,7 +26,8 @@ public class Merge {
 				.listFiles(new FileFilter() {
 					@Override
 					public boolean accept(final File file) {
-						return file.getName().matches("output-oom.txt|26.63");
+						return file.getName().matches(
+								"output-oom.txt|18.02-0907|22.35|26.63|26.96|29.98-ng|8.73-long");
 					}
 				})) {
 			Logger.getLogger(Merge.class.getName()).log(Level.INFO, "file = {0}", file);

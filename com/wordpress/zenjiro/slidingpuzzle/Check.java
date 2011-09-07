@@ -57,7 +57,7 @@ public class Check {
 	public static void main(final String[] args) throws FileNotFoundException {
 		final String inputFile = "merged.txt";
 		final String outputFile = "checked.txt";
-		final int pathLimit = Integer.MAX_VALUE;
+		final int pathLimit = 160;
 		final List<Board> problems = new ArrayList<Board>();
 		final int[][] counts = new int[7][7];
 		final Scanner problemsScanner = new Scanner(Check.class.getResourceAsStream("problems.txt"));
@@ -83,6 +83,7 @@ public class Check {
 		int ok = 0;
 		int failed = 0;
 		int skipped = 0;
+		int cut = 0;
 		int l = 0;
 		int r = 0;
 		int u = 0;
@@ -96,9 +97,12 @@ public class Check {
 			final Scanner resultsScanner = new Scanner(Check.class.getResourceAsStream(inputFile));
 			while (resultsScanner.hasNextLine()) {
 				final String path = resultsScanner.nextLine();
-				if (path.isEmpty() || path.length() > pathLimit) {
+				if (path.isEmpty()) {
 					out.println();
 					skipped++;
+				} else if (path.length() > pathLimit) {
+					out.println();
+					cut++;
 				} else {
 					Logger.getLogger(Check.class.getName()).log(Level.INFO, "path = {0}", path);
 					if (Util.isOk(path, problems.get(i).w, problems.get(i).h, problems.get(i).b)) {
@@ -119,8 +123,10 @@ public class Check {
 			resultsScanner.close();
 			out.close();
 		}
-		System.out.printf("ok : failed : skipped = %d : %d : %d = %.1f%% : %.1f%% : %.1f%%\n", ok,
-				failed, skipped, ok / 5000.0 * 100, failed / 5000.0 * 100, skipped / 5000.0 * 100);
+		System.out
+				.printf("ok : failed : skipped : cut = %d : %d : %d : %d = %.1f%% : %.1f%% : %.1f%% : %.1f%%\n",
+						ok, failed, skipped, cut, ok / 5000.0 * 100, failed / 5000.0 * 100,
+						skipped / 5000.0 * 100, cut / 5000.0);
 		System.out.printf(
 				"解答：%d/%d（%.1f%%）L：%d/%d（%.1f%%）R：%d/%d（%.1f%%）U：%d/%d（%.1f%%）D：%d/%d（%.1f%%）\n",
 				ok, n, (double) ok / n * 100, l, lx, (double) l / lx * 100, r, rx, (double) r / rx

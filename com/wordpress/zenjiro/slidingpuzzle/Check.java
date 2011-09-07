@@ -55,7 +55,7 @@ public class Check {
 	 * @throws FileNotFoundException ファイル未検出例外
 	 */
 	public static void main(final String[] args) throws FileNotFoundException {
-		final String inputFile = "output.txt";
+		final String inputFile = "merged.txt";
 		final String outputFile = "checked.txt";
 		final int pathLimit = Integer.MAX_VALUE;
 		final List<Board> problems = new ArrayList<Board>();

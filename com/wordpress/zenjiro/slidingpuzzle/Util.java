@@ -172,10 +172,12 @@ public class Util {
 		for (int i = 0; i < h; i++) {
 			for (int j = 0; j < w; j++) {
 				final int index = i * w + j;
-				final char c = b.charAt(index);
-				if (c != '=') {
-					final int number = (string.indexOf(c) + w * h - 1) % (w * h);
-					ret += Math.abs(number / w - i) + Math.abs(number % w - j);
+				if (index > 0) {
+					final char c = b.charAt(index);
+					if (c != '=') {
+						final int number = (string.indexOf(c) + w * h - 1) % (w * h);
+						ret += Math.abs(number / w - i) + Math.abs(number % w - j);
+					}
 				}
 			}
 		}

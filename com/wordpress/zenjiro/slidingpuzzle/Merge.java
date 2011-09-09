@@ -27,7 +27,7 @@ public class Merge {
 					@Override
 					public boolean accept(final File file) {
 						return file.getName().matches(
-								"39.63-ng|11.51-good");
+								"11.51-good|output.txt");
 					}
 				})) {
 			Logger.getLogger(Merge.class.getName()).log(Level.INFO, "file = {0}", file);

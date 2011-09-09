@@ -21,7 +21,7 @@ public class SlidingPuzzle {
 	public static void main(final String[] args) throws IOException {
 		final Queue<Boolean> isDone = new ArrayDeque<Boolean>();
 		final Scanner resultsScanner = new Scanner(
-				SlidingPuzzle.class.getResourceAsStream("34.73-m4"));
+				SlidingPuzzle.class.getResourceAsStream("37.57-m4"));
 		while (resultsScanner.hasNextLine()) {
 			if (resultsScanner.nextLine().length() > 0) {
 				isDone.add(true);

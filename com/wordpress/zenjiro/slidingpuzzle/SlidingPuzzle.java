@@ -21,7 +21,7 @@ public class SlidingPuzzle {
 	public static void main(final String[] args) throws IOException {
 		final Queue<Boolean> isDone = new ArrayDeque<Boolean>();
 		final Scanner resultsScanner = new Scanner(
-				SlidingPuzzle.class.getResourceAsStream("37.57-m4"));
+				SlidingPuzzle.class.getResourceAsStream("43.66-ok"));
 		while (resultsScanner.hasNextLine()) {
 			if (resultsScanner.nextLine().length() > 0) {
 				isDone.add(true);
@@ -70,7 +70,7 @@ public class SlidingPuzzle {
 				//					out.println();
 				//					failed++;
 				//				}
-				final String result = new BruteForceSolver().solve(w, h, b, 15000);
+				final String result = new BruteForceSolver().solve(w, h, b, 30000);
 				if (result.length() > 0) {
 					if (Util.isOk(result, w, h, b)) {
 						out.println(result);

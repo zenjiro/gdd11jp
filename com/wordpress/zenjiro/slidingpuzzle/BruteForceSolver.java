@@ -44,7 +44,7 @@ public class BruteForceSolver implements Solver {
 		/**
 		 * ヒューリスティック距離とパス長の重み付けを調整するマジックナンバー
 		 */
-		final static int MAGIC = 3;
+		final static int MAGIC = 4;
 
 		@Override
 		public String toString() {

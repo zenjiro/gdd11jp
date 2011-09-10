@@ -55,21 +55,6 @@ public class SlidingPuzzle {
 			if (!isDone.poll() && !(w == 3 && h == 3 || w == 4 && h == 4)) {
 				Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.INFO,
 						"w = {0}, h = {1}, b = {2}", new Object[] { w, h, b });
-				//				PuzzleConfiguration.initialize(PuzzleConfiguration.PUZZLE_15,
-				//						PuzzleConfiguration.ALGORITHM_IDASTAR, PuzzleConfiguration.HEURISTIC_PD,
-				//						Utility.getDefaultNumOfThreads());
-				//				PuzzleConfiguration.getAlgorithm().solve(
-				//						Utility.arrayToLong(Utility.getArray(Util.hexToDecimal(b), 16)),
-				//						Utility.getDefaultNumOfThreads(), Util.getWalls(b));
-				//				if (Util.isOk(Algorithm.shortestPath, w, h, b)) {
-				//					out.println(Algorithm.shortestPath);
-				//					ok++;
-				//				} else {
-				//					Logger.getLogger(SlidingPuzzle.class.getName()).log(Level.WARNING,
-				//							"結果が間違っていました：{0}", Algorithm.shortestPath);
-				//					out.println();
-				//					failed++;
-				//				}
 				final String result = new BruteForceSolver().solve(w, h, b, 30000);
 				if (result.length() > 0) {
 					if (Util.isOk(result, w, h, b)) {
